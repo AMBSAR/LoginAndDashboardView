@@ -1,0 +1,13 @@
+.ModuleItemCard {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px;
+    align-self: center;
+    border-color: black;
+    width: 200px;
+    height: 220px;
+    padding: 20px;
+    box-shadow: 0px 0px 2px 5px rgba(20, 20, 120, 0.3);
+}

@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+.componentOuter{
+    display: flexbox;
+    margin: auto;
+    position: relative;
+    padding-top: 5%;
+}
+
+.container {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.outerBorder {
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 5px rgba(120, 207, 228, 0.35);
+    width: 450px;
+    height: 550px;
+    padding: 50px;
+}
+
+img {
+    box-sizing: content-box;
+    align-items: center;
+    vertical-align: top;
+    margin-bottom: 45px;
+}
+
+h1 {
+    font-size: medium;
+    margin-bottom: 20px;
+}
+
+kendo-textbox {
+    height: 25px;
+    width: 350px;
+}
+
+.inputControlsContainer {
+    width:250;
+    align-items: first baseline;
+}
+
+.login {
+    align-self: center;
+    height: 30px;
+    width: 250px;
+    margin-bottom: 15px;
+
+   &:hover {
+    box-shadow: 0px 0px 2px 3px rgba(120, 207, 228, 0.35);
+    }
+}
+
+kendo-label {
+    font-size: small;
+    margin-bottom: 5px;
+}
+
+.rememberMeContainer {
+    display: flex;
+    justify-items: left;
+    margin-bottom: 25px;
+} 
+
+input[type="checkbox"] {
+    margin-right: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+.mandatory {
+    margin-top: 5px;
+}
+.mandatory::after {
+    content: "*";
+    color: red;
+}
+
+button {
+    align-self: center;
+    background-color: rgb(20, 125, 100);
+    color: white;
+}
+
+kendo-loader {
+    color: rgb(20, 125, 100);
+}
+
+.Message {
+    color: red;
+    font-size: x-small;
+    text-align: center;
+}
+
+.k-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80px;
+      }
+
+.loader {
+    z-index: 1;
+}
+
+#checkedState {
+    color: rgb(20, 125, 100);
+}

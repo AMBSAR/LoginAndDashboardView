@@ -1,0 +1,17 @@
+<div class="mainDashboard">
+    <div class="header">
+        <app-dashboard-header></app-dashboard-header>
+    </div>
+    <div class="content">
+        <div class="navigationBar">
+            <app-navigation-bar></app-navigation-bar>
+        </div>
+        <div class="moduleListView">
+            @for (item of moduleList; track item) {
+                <div class="card">
+                    <app-tool-title-card [Data]="item" (ModuleSelectedEvent)="onModuleSelect(item.RouterLink)"></app-tool-title-card>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+    <!-- <kendo-textbox
+        #textbox
+        [style.width.px]="200"
+        name="name"
+        [(ngModel)]="value"
+        required
+      ></kendo-textbox> -->
+
+      <kendo-textbox placeholder="Search"></kendo-textbox>
+
+      <button kendoButton [disabled]="true">Advanced Search</button>
+
+      <kendo-label class="k-display-block" >Result: {{count}} Contracts</kendo-label>
+
+      <kendo-treeview
+      [nodes]="data"
+      textField="text"
+      kendoTreeViewHierarchyBinding
+      childrenField="items"
+      [filterable]="true"
+      kendoTreeViewExpandable
+      [expandedKeys]="expandedKeys"
+      kendoTreeViewCheckable
+      [(checkedKeys)]="checkedKeys"
+    >
+    </kendo-treeview>
+</div>

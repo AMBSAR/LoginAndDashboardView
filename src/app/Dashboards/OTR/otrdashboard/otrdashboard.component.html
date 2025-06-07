@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <div class="headingArea">
+            <kendo-label text="Filter Contracts" class="left" #Heading />
+            <kendo-svg-icon [icon]="moreHorizontalIcon" class="right"></kendo-svg-icon>
+            <kendo-svg-icon [icon]="collapseIcon" class="right"></kendo-svg-icon>
+        </div>
+        <div>
+            <!-- <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+                <kendo-tabstrip-tab title="My Contracts" [selected]="true">
+                    <ng-template kendoTabContent>
+                        <div class="content">
+                            <app-project-tree></app-project-tree>
+                        </div>
+                    </ng-template>
+                </kendo-tabstrip-tab>
+                <kendo-tabstrip-tab title="All Contracts">
+                    <ng-template kendoTabContent>
+                        <div class="content">
+                            <app-project-tree></app-project-tree>
+                        </div>
+                    </ng-template>
+                </kendo-tabstrip-tab>
+                <kendo-tabstrip-tab title="Favourites">
+                    <ng-template kendoTabContent>
+                        <div class="content">
+                            <app-project-tree></app-project-tree>
+                        </div>
+                    </ng-template>
+                </kendo-tabstrip-tab>
+            </kendo-tabstrip> -->
+        </div>
+    </div>
+    <div>
+        <div class="heading">
+    </div>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+    </div>
+</div>

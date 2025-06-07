@@ -1,0 +1,24 @@
+<div class="sidebar">
+    <div class="nav-content">
+        <nav class="nav-items">
+            <div class="home">
+                <a [routerLink]="home.router">
+                    <!-- <span class="material-icons">{{ item.icon }}</span> -->
+                    <kendo-svg-icon [icon]="home.icon"></kendo-svg-icon>
+                    <!-- <span class="menu-item">{{ item.name }}</span> -->
+                </a>
+            </div>
+            <div>
+                <ul>
+                    <li *ngFor="let item of items">
+                        <a [routerLink]="item.router">
+                            <!-- <span class="material-icons">{{ item.icon }}</span> -->
+                            <kendo-svg-icon [icon]="item.icon"></kendo-svg-icon>
+                            <!-- <span class="menu-item">{{ item.name }}</span> -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="left" id="test-area">
+        <!-- <KENDO_ICON [icon]="iconName"></KENDO_ICON> -->
+         <!-- <kendo-svg-icon [icon]="icons.paperclip"></kendo-svg-icon> -->
+        <!-- <span class="k-icon k-i-level-to-top"> -->
+        <button class="k-icon k-i-level-to-top">
+        <kendo-svg-icon id="home" [icon]="unOrderedListIcon"></kendo-svg-icon>
+        </button>
+        <!-- </span> -->
+        <img id="logo" src="assets\Images\Logo-Dashboard.png" />
+        <span class="mainDashboardSelected">{{SelectedMainDashboard}}</span>
+    </div>
+    <div class="rightContainer">
+        <button class="right">My Request</button>
+        <button class="right">Support Ticket</button>
+        <button class="right">
+        <kendo-svg-icon [icon]="messagesIcon"></kendo-svg-icon>
+        </button>
+        <button class="right">
+        <kendo-svg-icon [icon]="helpIcon"></kendo-svg-icon>
+        </button>
+        <button>
+        <kendo-svg-icon [icon]="notificationIcon" class="right"></kendo-svg-icon>
+        @if (showNotification) {
+        <span class="notificationCount">{{NotificationCount}}</span>
+        }
+        </button>
+        <span> 
+            @if (LoggedInUserImage) {
+                <img src="LoggedInUserImage" class="userImage right" />
+            }
+            @else {
+                <img src="assets/Images/icons8-user-32.png" class="userImage right" />
+            }
+
+            @if (showNotification) {
+        <span class="showMsgCount">{{NotificationCount}}</span>
+        }
+        </span>
+    </div>
+</div>

@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+// @use "@progress/kendo-theme-bootstrap/scss/index.scss" as * with (
+//   $kendo-font-family: ('Poppins', sans-serif)
+// );
+
+// @include kendo-theme--styles();

@@ -1,0 +1,44 @@
+<div class="componentOuter">
+    <div class="contentOuter">
+        <div class="container outerBorder">
+            <div class="Logo">
+                <img src="assets\Images\Logo.png" />
+            </div>
+            <div>
+                <h1>Sign in</h1>
+            </div>
+            <Form class="inputControlsContainer" [formGroup]="loginForm">
+                <div>
+                     @if (showLoader) {
+                    <div class="k-block loader">
+                        <kendo-loader [type]="loaderType" [size]="loaderSize"></kendo-loader>
+                    </div>
+                    }
+
+                    <div class="inputs">
+                        <kendo-label class="k-display-block mandatory" [for]="textbox" text="SSO ID"></kendo-label>
+                        <kendo-textbox #textbox kendoTypography fontSize="sm" [maxlength]='35' [clearButton]="true"
+                            formControlName="userName" class="login"></kendo-textbox>
+                    </div>
+                    <div>
+                        <kendo-label class="k-display-block mandatory" [for]="password" text="Password"></kendo-label>
+
+                        <kendo-textbox #password [maxlength]='16' [clearButton]="true" class="login" type="password" formControlName="password"/>
+                    </div>
+                    <div class="rememberMeContainer">
+                        <kendo-checkbox #checkedState [checkedState]="true"></kendo-checkbox>
+                        <kendo-label class="k-checkbox-label" [for]="checkedState" text="Remember me"></kendo-label>
+                    </div>
+                </div>
+                <div>
+                    <button kendoButton class="login" type="submit" (click)="onLogin()">Login</button>
+                </div>
+                 @if (showMessage) {
+                    <div class="Message">
+                        <kendo-label text="{{Message}}"></kendo-label>
+                    </div>
+                    }
+            </Form>
+        </div>
+    </div>
+</div>
