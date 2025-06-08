@@ -1,47 +1,71 @@
-<div>
-    <!-- <kendo-tabstrip (tabSelect)="onTabSelect($event)">
-                <kendo-tabstrip-tab title="ISPO" [selected]="true">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
+<div class="container">
+    <div class="header">
+        <div class="left">
+            <h1>Operations</h1>
+        </div>
+        <div class="rightContainer">
+            <div class="lastUploaded right">
+                <span>Last Uploaded: {{LastUploadedDate}}</span>
+            </div>
+            <div class="verticalSeparator"></div>
+            <div>
+                <span class="right">YTD </span>
+                <kendo-circularprogressbar [value]="YTD_Value" class="right">
+                    <ng-template kendoCircularProgressbarCenterTemplate let-value="value">
+                        <span>{{ value }}</span>
                     </ng-template>
-                </kendo-tabstrip-tab>
-                <kendo-tabstrip-tab title="VDR">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </ng-template>
-                </kendo-tabstrip-tab>
-                <kendo-tabstrip-tab title="VDR Revision">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </ng-template>
-                </kendo-tabstrip-tab>
-                <kendo-tabstrip-tab title="OTD Trends">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </ng-template>
-                </kendo-tabstrip-tab>
-                <kendo-tabstrip-tab title="Engineering Productivity">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </ng-template>
-                </kendo-tabstrip-tab>
-                <kendo-tabstrip-tab title="Technical Alignment">
-                    <ng-template kendoTabContent>
-                        <div class="content">
-                            <router-outlet></router-outlet>
-                        </div>
-                    </ng-template>
-                </kendo-tabstrip-tab>
-            </kendo-tabstrip> -->
-</div>
+                </kendo-circularprogressbar>
+            </div>
+            <div>
+                <button kendoButton class="advanceSearch"> Do Vs Buy</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+            <kendo-tabstrip-tab title="ISPO" [selected]="true">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab title="VDR">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab title="VDR Revision">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab title="OTD Trends">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab title="Engineering Productivity">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab title="Technical Alignment">
+                <ng-template kendoTabContent>
+                    <div class="content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </ng-template>
+            </kendo-tabstrip-tab>
+        </kendo-tabstrip>
+    </div>
 
+</div>

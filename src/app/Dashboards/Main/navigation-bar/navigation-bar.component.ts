@@ -13,12 +13,12 @@ import {anchorIcon, tableIcon, folderAddIcon, folderIcon, checkOutlineIcon, mysp
 })
 
 export class NavigationBarComponent {
-  home = { name: 'anchor', icon: anchorIcon, router: '/home' };
+  home = { name: 'anchor', icon: anchorIcon, router: '/main/home' };
 items = [
-    { name: 'ProjectInfo', icon: tableIcon, router: '/ProjectInfo' },
-    { name: 'Operations', icon: folderAddIcon, router: '/Operations' },
-    { name: 'Quality', icon: folderIcon, router: '/Quality' },
-    { name: 'Engineering', icon: checkOutlineIcon, router: '/Engineering' },
+    { name: 'ProjectInfo', icon: tableIcon, router: '/main/OTR/ProjectInfo' },
+    { name: 'Operations', icon: folderAddIcon, router: '/main/OTR/Operations' },
+    { name: 'Quality', icon: folderIcon, router: '/main/OTR/Quality' },
+    { name: 'Engineering', icon: checkOutlineIcon, router: '/main/OTR/Engineering' },
     { name: 'Privilege', icon: myspaceIcon, router: '/Privilege' },
     { name: 'ControlPanel', icon: gearIcon, router: '/ControlPanel' }
   ];

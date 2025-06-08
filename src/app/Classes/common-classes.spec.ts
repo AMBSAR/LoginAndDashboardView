@@ -1,7 +1,7 @@
-import { CommonClasses } from './common-classes';
+import { IEPModuleData } from './common-classes';
 
 describe('CommonClasses', () => {
   it('should create an instance', () => {
-    expect(new CommonClasses()).toBeTruthy();
+    expect(new IEPModuleData('', '', '')).toBeTruthy();
   });
 });

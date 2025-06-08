@@ -36,3 +36,43 @@ export interface Discipline {
 export interface Department {
   id: string
 }
+
+// For Project list
+export interface ProjectDetails {
+    projectId:             string;
+    contractName:          string;
+    racYear:               number;
+    deliveryYear:          number;
+    projectStatus:         string;
+    racYearList:           number[];
+    deliveryYearList:      number[];
+    projectStatusList:     string[];
+    isActive:              boolean;
+    jobNumber:             string[];
+    installationType:      any[];
+    epcName:               string;
+    country:               string;
+    plantSiteCountry:      string[];
+    plantSiteCustomerName: string[];
+    equipSerialNumber:     string[];
+    driverMmNames:         string[];
+    drivenMmNames:         string[];
+    connectorMmNames:      string[];
+    trains:                Train[];
+    tpsSegment:            string;
+    tpsSegmentList:        string[];
+    isMyProject:           boolean;
+}
+
+export interface Train {
+    trainId:   string;
+    trainName: string;
+    mmInfo:    MmInfo[];
+}
+
+export interface MmInfo {
+    type:      string;
+    mmNames:   string[];
+    childJobs: any[];
+    jobNumber: string;
+}

@@ -1,14 +1,23 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { KENDO_TABSTRIP } from '@progress/kendo-angular-layout';
+import { KENDO_TABSTRIP, SelectEvent } from '@progress/kendo-angular-layout';
+import {
+  KENDO_PROGRESSBARS,
+  ProgressColor,
+} from "@progress/kendo-angular-progressbar";
 
 @Component({
   selector: 'app-operations-dashboard',
   standalone: true,
-  imports: [RouterOutlet, KENDO_TABSTRIP],
+  imports: [RouterOutlet, KENDO_TABSTRIP, KENDO_PROGRESSBARS],
   templateUrl: './operations-dashboard.component.html',
   styleUrl: './operations-dashboard.component.scss'
 })
 export class OperationsDashboardComponent {
+  LastUploadedDate:string = '04 Feb 2025';
+  YTD_Value: number = 72;
 
+  onTabSelect(e: SelectEvent){
+  
+    }
 }

@@ -1,0 +1,8 @@
+<div class="moduleListView">
+    @for (item of moduleList; track item) {
+    <div class="card">
+        <app-tool-title-card [Data]="item" (click)="onModuleSelect(item.RouterLink)"
+            (ModuleSelectedEvent)="onModuleSelect(item.RouterLink)"></app-tool-title-card>
+    </div>
+    }
+</div>

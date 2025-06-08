@@ -1,6 +1,6 @@
-.sidebar{
+.sidebar {
     display: flex;
-    position:sticky;
+    position: sticky;
     flex-direction: column;
     width: 50px;
     height: 100%;
@@ -13,68 +13,104 @@
     box-shadow: 0px 0px 1px 0px gray;
 }
 
-.header{
-   background-color: #181F2E;
-   height: 60px;
-   align-items: center;
+.header {
+    background-color: #181F2E;
+    height: 60px;
+    align-items: center;
 }
 
-.logo-text{
+.logo-text {
     padding-left: 20px;
     color: white;
     align-items: center;
     justify-content: center;
 }
 
-ul{
+.nav-content {
+    width: 100%;
+}
+
+.mainDashboardSelected::before {
+    content: '';
+    position: relative;
+    border-left: 1px solid white;
+    right: 10px;
+    height: 75%;
+}
+
+.nav-items {
+    display: block;
+    align-items: center;
+    width: 100%;
+    justify-items: center;
+}
+
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+li {
+    padding: 5px;
+}
+
 a {
-    height: 25px;
-    width: 15px;
-    padding: .5rem .1rem;
+    height: 20px;
+    width: 20px;
+    padding: .20rem .25rem;
     color: white;
     display: flex;
     align-items: center;
     text-decoration: none;
     white-space: nowrap;
+    align-self: center;
 }
 
 a:hover {
-        border-radius: 50px;
-        border-color: 0px 0px 5px 2px rgb(198, 247, 226);
-        color: #e2e8f0;
-      }
-      
-      a.active {
-        background-color: rgba(66, 153, 225, 0.15);
-        color: #4299e1;
-        font-weight: 500;
-      }
+    border-radius: 50px;
+    //background-color: blue;
+    background-color: rgb(198, 247, 226);
+    border-color: 0px 0px 5px 2px rgb(198, 247, 226);
+    color: #e2e8f0;
+}
 
-.sidebar-content{
- padding-top: 0.75rem ;
+a:active {
+    background-color: rgb(198, 247, 226);
+    color: #4299e1;
+}
+
+.sidebar-content {
+    padding-top: 0.75rem;
 }
 
 
-kendo-svg-icon{
+kendo-svg-icon {
     height: 15px;
     width: 15px;
     font-size: 20px;
     color: black;
 }
 
-.menu-item{
- font-size: 16px;
+.menu-item {
+    font-size: 16px;
 }
 
 .home {
+    display: flex;
+    height: 35px;
     padding-bottom: 20px;
-    border-bottom: gray;
-    border: 0px 0px 0px 1px;
-    background-color: red;
-    box-shadow: 0px 0px 1px 0px gray;
+    padding-top: 10px;
+    //border-bottom: gray;
+    //border: 0px 0px 0px 1px;
+    //box-shadow: 0px 0px 1px 0px gray;
 }
+
+.separator {
+    height: 1px;
+    background-color: lightgray;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.toolNavigation {}

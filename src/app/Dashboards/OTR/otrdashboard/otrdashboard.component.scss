@@ -1,0 +1,62 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+}
+
+.leftsideView {
+    width: 250px;
+    height: 100%;
+    border-right-width: 1px;
+    border-right-color: gray;
+}
+
+.headingArea {
+    display: flex;
+    //height: 60px;
+    height: 25px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.left {
+    justify-self: left;
+    width: 100%;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.right {
+    justify-self: right;
+    padding: 5px 10px;
+}
+
+kendo-tabstrip {
+    font-size:x-small;
+}
+
+.separator {
+    height: 1px;
+    background-color: lightgray;
+    width: 100%;
+}
+
+.verticalSeparator{
+    height: 100%;
+    background-color: lightgray;
+    width: 1px;
+}
+
+button {
+    border-width: 0px;
+    background-color: transparent;
+}
+
+.rightSideView {
+    width: 100%;
+}

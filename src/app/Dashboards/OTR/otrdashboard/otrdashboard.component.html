@@ -1,12 +1,14 @@
-<div>
-    <div>
+<div class="container">
+    <div class="leftsideView">
         <div class="headingArea">
             <kendo-label text="Filter Contracts" class="left" #Heading />
-            <kendo-svg-icon [icon]="moreHorizontalIcon" class="right"></kendo-svg-icon>
-            <kendo-svg-icon [icon]="collapseIcon" class="right"></kendo-svg-icon>
+            <button kendoButton [svgIcon]="moreHorizontalIcon"></button>
+            <button kendoButton [svgIcon]="collapseIcon"></button>
+        </div>
+        <div class="separator">
         </div>
         <div>
-            <!-- <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+            <kendo-tabstrip (tabSelect)="onTabSelect($event)">
                 <kendo-tabstrip-tab title="My Contracts" [selected]="true">
                     <ng-template kendoTabContent>
                         <div class="content">
@@ -28,14 +30,55 @@
                         </div>
                     </ng-template>
                 </kendo-tabstrip-tab>
-            </kendo-tabstrip> -->
+            </kendo-tabstrip>
         </div>
+        <!-- <kendo-splitter orientation="vertical" style="height: 340px;">
+            <kendo-splitter-pane>
+                <kendo-splitter>
+                    <kendo-splitter-pane [collapsible]="true" size="10%">
+                        <div class="headingArea">
+                            <kendo-label text="Filter Contracts" class="left" #Heading />
+                            <kendo-svg-icon [icon]="moreHorizontalIcon" class="right"></kendo-svg-icon>
+                            <kendo-svg-icon [icon]="collapseIcon" class="right"></kendo-svg-icon>
+                        </div>
+                    </kendo-splitter-pane>
+    
+                    <kendo-splitter-pane>
+                        <div>
+                            <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+                                <kendo-tabstrip-tab title="My Contracts" [selected]="true">
+                                    <ng-template kendoTabContent>
+                                        <div class="content">
+                                            <app-project-tree></app-project-tree>
+                                        </div>
+                                    </ng-template>
+                                </kendo-tabstrip-tab>
+                                <kendo-tabstrip-tab title="All Contracts">
+                                    <ng-template kendoTabContent>
+                                        <div class="content">
+                                            <app-project-tree></app-project-tree>
+                                        </div>
+                                    </ng-template>
+                                </kendo-tabstrip-tab>
+                                <kendo-tabstrip-tab title="Favourites">
+                                    <ng-template kendoTabContent>
+                                        <div class="content">
+                                            <app-project-tree></app-project-tree>
+                                        </div>
+                                    </ng-template>
+                                </kendo-tabstrip-tab>
+                            </kendo-tabstrip>
+                        </div>
+                    </kendo-splitter-pane>
+                </kendo-splitter>
+            </kendo-splitter-pane>
+        </kendo-splitter> -->
     </div>
-    <div>
-        <div class="heading">
-    </div>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
+    <div class="verticalSeparator">
+        </div>
+    <div class="rightSideView">
+        <div>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>

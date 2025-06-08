@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 // import { KENDO_SVGICON } from '@progress/kendo-svg-icons';
 import { KENDO_ICONS } from "@progress/kendo-angular-icons";
 import { sortDescIcon, commentIcon, questionCircleIcon, bellIcon } from '@progress/kendo-svg-icons';
@@ -14,6 +14,7 @@ import { sortDescIcon, commentIcon, questionCircleIcon, bellIcon } from '@progre
 
 
 export class DashboardHeaderComponent {
+  @Input()
   SelectedMainDashboard: String = '';
 
   public unOrderedListIcon = sortDescIcon;
