@@ -13,7 +13,7 @@
             <div class="toolNavigation">
                 <ul>
                     <li *ngFor="let item of items">
-                        <a [routerLink]="item.router">
+                        <a [routerLink]="item.router" (click)="dashboardSelected(item.router)">
                             <!-- <span class="material-icons">{{ item.icon }}</span> -->
                             <kendo-svg-icon [icon]="item.icon"></kendo-svg-icon>
                             <!-- <span class="menu-item">{{ item.name }}</span> -->

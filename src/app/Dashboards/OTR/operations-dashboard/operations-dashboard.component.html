@@ -5,16 +5,18 @@
         </div>
         <div class="rightContainer">
             <div class="lastUploaded right">
-                <span>Last Uploaded: {{LastUploadedDate}}</span>
+                <span class="textPart" >Last Uploaded: <span class="valuePart">{{LastUploadedDate}}</span></span>
             </div>
             <div class="verticalSeparator"></div>
             <div>
                 <span class="right">YTD </span>
-                <kendo-circularprogressbar [value]="YTD_Value" class="right">
-                    <ng-template kendoCircularProgressbarCenterTemplate let-value="value">
-                        <span>{{ value }}</span>
-                    </ng-template>
-                </kendo-circularprogressbar>
+                <div class="small-progress">
+                    <kendo-circularprogressbar [value]="YTD_Value" class="right">
+                        <ng-template kendoCircularProgressbarCenterTemplate let-value="value">
+                            <span style="font-size: 10px;">{{ value }} %</span>
+                        </ng-template>
+                    </kendo-circularprogressbar>
+                </div>
             </div>
             <div>
                 <button kendoButton class="advanceSearch"> Do Vs Buy</button>
@@ -24,45 +26,33 @@
     <div>
         <kendo-tabstrip (tabSelect)="onTabSelect($event)">
             <kendo-tabstrip-tab title="ISPO" [selected]="true">
-                <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+                <ng-template kendoTabContent class="content">
+                    <app-ispo-dashboard></app-ispo-dashboard>
                 </ng-template>
             </kendo-tabstrip-tab>
-            <kendo-tabstrip-tab title="VDR">
+            <kendo-tabstrip-tab title="VDR" class="content">
                 <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+                    <app-page-tbd></app-page-tbd>
                 </ng-template>
             </kendo-tabstrip-tab>
-            <kendo-tabstrip-tab title="VDR Revision">
+            <kendo-tabstrip-tab title="VDR Revision" class="content">
                 <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+                    <app-page-tbd></app-page-tbd>
                 </ng-template>
             </kendo-tabstrip-tab>
-            <kendo-tabstrip-tab title="OTD Trends">
+            <kendo-tabstrip-tab title="OTD Trends" class="content">
                 <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+                    <app-page-tbd></app-page-tbd>
                 </ng-template>
             </kendo-tabstrip-tab>
-            <kendo-tabstrip-tab title="Engineering Productivity">
-                <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+            <kendo-tabstrip-tab title="Engineering Productivity" class="content">
+                <ng-template kendoTabContent class="content">
+                    <app-page-tbd></app-page-tbd>
                 </ng-template>
             </kendo-tabstrip-tab>
-            <kendo-tabstrip-tab title="Technical Alignment">
-                <ng-template kendoTabContent>
-                    <div class="content">
-                        <router-outlet></router-outlet>
-                    </div>
+            <kendo-tabstrip-tab title="Technical Alignment" class="content">
+                <ng-template kendoTabContent class="content">
+                    <app-page-tbd></app-page-tbd>
                 </ng-template>
             </kendo-tabstrip-tab>
         </kendo-tabstrip>

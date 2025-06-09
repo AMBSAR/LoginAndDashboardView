@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { KENDO_ICONS } from "@progress/kendo-angular-icons";
 import { moreHorizontalIcon} from '@progress/kendo-svg-icons';
@@ -17,12 +17,24 @@ import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
   templateUrl: './otrdashboard.component.html',
   styleUrl: './otrdashboard.component.scss'
 })
-export class OTRDashboardComponent {
+export class OTRDashboardComponent implements OnInit {
 public moreHorizontalIcon = moreHorizontalIcon;
 public collapseIcon = chevronDoubleLeftIcon;
 public rightIcon = chevronRightIcon;
 
-onTabSelect(e: SelectEvent){
+tabIndex = 0; 
+projectListTypes: string[] = ["All", "My", "Fav"];
+public projectListType: string;
 
+constructor() {
+  this.projectListType = this.projectListTypes.at(0) as string;
+}
+
+onTabSelect(e: SelectEvent){
+  e.index == 0
+  }
+
+  ngOnInit(): void {
+    this.projectListType = this.projectListTypes.at(this.tabIndex) as string;
   }
 }

@@ -1,12 +1,12 @@
 <div class="mainDashboard">
     <div class="header">
-        <app-dashboard-header [SelectedMainDashboard]="selectedModule"></app-dashboard-header>
+        <app-dashboard-header></app-dashboard-header>
     </div>
     <div class="content">
         <div class="navigationBar">
             <app-navigation-bar></app-navigation-bar>
         </div>
-        <div class="moduleListView">
+        <div class="dashboardContainer">
            <router-outlet></router-outlet>
         </div>
     </div>

@@ -42,4 +42,8 @@ export class UserAuthenticatorService {
   getLoggedInUser() {
     return this.loggedInUser;
   }
+
+  clearLoginData() {
+    this.loggedInUser = null;
+  }
 }

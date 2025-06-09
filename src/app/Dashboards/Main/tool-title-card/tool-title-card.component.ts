@@ -13,8 +13,11 @@ export class ToolTitleCardComponent implements OnInit {
   @Input()
   Data: IEPModuleData = new IEPModuleData('', '', '');
 
-  @Output()
-  ModuleSelectedEvent = new EventEmitter<string>();
+  @Output() ModuleSelectedEvent: EventEmitter<any>;
+
+  constructor() {
+    this.ModuleSelectedEvent = new EventEmitter();
+  }
 
   selectItem(value: string) {
     this.ModuleSelectedEvent.emit(value);

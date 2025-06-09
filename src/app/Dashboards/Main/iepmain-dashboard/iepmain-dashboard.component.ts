@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import {IEPModuleData} from '../../../Classes/common-classes'
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
 import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
@@ -14,8 +14,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './iepmain-dashboard.component.scss'
 })
 export class IEPMainDashboardComponent {
-
-  selectedModule: string = 'OTR';
 
   moduleList : IEPModuleData[] = [
     { Icon:'/assets/Images/npi_icon.png', ModuleName: 'NPD', RouterLink: '/NPD'},

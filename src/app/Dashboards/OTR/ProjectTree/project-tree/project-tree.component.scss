@@ -46,14 +46,23 @@ kendo-treeview {
     height: 100%;
 }
 
-#loader {
+.loader {
     z-index: 1;
     align-self: center;
     color: gray;
 }
 
-#nodeTemplate {
-    background-color: aqua;
+
+.text {
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nodeItem {
     display: flex;
+    justify-content: stretch;
 }
 

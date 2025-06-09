@@ -39,7 +39,7 @@ export class LoginViewComponent implements OnInit {
       {
         userName : new FormControl('', Validators.required),
         password : new FormControl('', Validators.required),
-        isRememberMeSelected : new FormControl(false)
+        isRememberMeSelected : new FormControl(true)
       }
      )
    }
@@ -60,7 +60,7 @@ export class LoginViewComponent implements OnInit {
 
       if (rememberData)
       {
-        rememberData(user, pwd);
+        this.saveUserData(user, pwd);
       }
 
       //this.router.navigate([{ outlets: { primary: ['main'], Dashboard: ['home'] } }]);
@@ -81,7 +81,7 @@ export class LoginViewComponent implements OnInit {
     }
   }
 
-  rememberData(user: string, password: string) {
+  saveUserData(user: string, password: string) {
 
     let registerUserObj: any = {
       userName: '',
@@ -91,8 +91,12 @@ export class LoginViewComponent implements OnInit {
     registerUserObj.userName = user;
     registerUserObj.password = password;
 
-    this.registeredUsers.push(registerUserObj);
-    localStorage.setItem('loggedInUsers', JSON.stringify(this.registeredUsers));
+    const userData = this.registeredUsers?.find( x => x.userName === user);
+
+    if (userData == undefined ) {
+        this.registeredUsers.push(registerUserObj);
+        localStorage.setItem('loggedInUsers', JSON.stringify(this.registeredUsers));
+    }
   }
 
   ngOnInit(): void {
@@ -113,9 +117,10 @@ export class LoginViewComponent implements OnInit {
   autoPopulatePassword() {
     let user = this.loginForm.value.userName;
     let pwd = this.loginForm.value.password;
+    let isSave = this.loginForm.value.isRememberMeSelected;
 
     if (user != undefined && (pwd == '' || pwd == undefined)) {
-      this.loginForm.value.password = this.getPassword(user);
+      this.loginForm.setValue({userName: user, password: this.getPassword(user), isRememberMeSelected: isSave});
     }
   }
 }

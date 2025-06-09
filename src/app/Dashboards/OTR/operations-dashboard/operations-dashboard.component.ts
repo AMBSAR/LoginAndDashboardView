@@ -5,11 +5,13 @@ import {
   KENDO_PROGRESSBARS,
   ProgressColor,
 } from "@progress/kendo-angular-progressbar";
+import { IspoDashboardComponent } from '../ISPO/ispo-dashboard/ispo-dashboard.component';
+import { PageTBDComponent } from '../../page-tbd/page-tbd.component';
 
 @Component({
   selector: 'app-operations-dashboard',
   standalone: true,
-  imports: [RouterOutlet, KENDO_TABSTRIP, KENDO_PROGRESSBARS],
+  imports: [RouterOutlet, KENDO_TABSTRIP, KENDO_PROGRESSBARS, IspoDashboardComponent, PageTBDComponent],
   templateUrl: './operations-dashboard.component.html',
   styleUrl: './operations-dashboard.component.scss'
 })

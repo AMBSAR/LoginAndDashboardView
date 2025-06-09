@@ -7,26 +7,26 @@
         </div>
         <div class="separator">
         </div>
-        <div>
+        <div class="treeViewArea">
             <kendo-tabstrip (tabSelect)="onTabSelect($event)">
                 <kendo-tabstrip-tab title="My Contracts" [selected]="true">
                     <ng-template kendoTabContent>
                         <div class="content">
-                            <app-project-tree></app-project-tree>
+                            <app-project-tree [Type]="projectListType"></app-project-tree>
                         </div>
                     </ng-template>
                 </kendo-tabstrip-tab>
                 <kendo-tabstrip-tab title="All Contracts">
                     <ng-template kendoTabContent>
                         <div class="content">
-                            <app-project-tree></app-project-tree>
+                            <app-project-tree [Type]="projectListType"></app-project-tree>
                         </div>
                     </ng-template>
                 </kendo-tabstrip-tab>
                 <kendo-tabstrip-tab title="Favourites">
                     <ng-template kendoTabContent>
                         <div class="content">
-                            <app-project-tree></app-project-tree>
+                            <app-project-tree [Type]="projectListType"></app-project-tree>
                         </div>
                     </ng-template>
                 </kendo-tabstrip-tab>
@@ -77,7 +77,7 @@
     <div class="verticalSeparator">
         </div>
     <div class="rightSideView">
-        <div>
+        <div class="rightContainer">
             <router-outlet></router-outlet>
         </div>
     </div>

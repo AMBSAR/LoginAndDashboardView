@@ -1,5 +1,5 @@
 <div class="container">
-    <!-- <kendo-textbox
+  <!-- <kendo-textbox
         #textbox
         [style.width.px]="200"
         name="name"
@@ -7,46 +7,44 @@
         required
       ></kendo-textbox> -->
 
-      <div>
-        <kendo-textbox placeholder="Search" class="cornerRoundedTextBox">
-          <kendo-svg-icon [icon]="searchIcon" class="searchIcon" ></kendo-svg-icon>
-        </kendo-textbox>
-      </div>
+  <div>
+    <kendo-textbox placeholder="Search" class="cornerRoundedTextBox" type="text" [(ngModel)]="searchText" (ngModelChange)="searchTree()">
+    </kendo-textbox>
+    <kendo-svg-icon [icon]="searchIcon" class="searchIcon"></kendo-svg-icon>
+  </div>
 
-      <button kendoButton class="advanceSearch">
-        <span (click)="onAdvancedSearch()" class="advSearchContent">
-                <kendo-svg-icon [icon]="rightIcon" class="right"></kendo-svg-icon>
-                Advanced Search
-                </span>
-      </button>
-      
-      <kendo-label class="k-display-block" >Result: {{getProjectCount()}} Contracts</kendo-label>
-      <div>
-        @if(isDataLoading) {
-        <span #loader>Loading...</span>
-        }
-      <kendo-treeview
-      [nodes]="ProjectDataList"
-      [textField]="['projectName', 'trainName', 'jobNumber']"
-      [hasChildren]="hasChildren"
-      [children]="children"
-      kendoTreeViewExpandable
-      kendoTreeViewSelectable
-      [(selectedKeys)]="selectedKeys"
-    >
-    <ng-template kendoTreeViewNodeTemplate let-dataItem>
-      <div #nodeTemplate>
-      <kendo-checkbox #checkedState [checkedState]="dataItem.IsSelected"></kendo-checkbox>
-        <kendo-label class="k-display-block mandatory" text="fetchText(dataItem)" ></kendo-label>
+  <button kendoButton class="advanceSearch">
+    <span (click)="onAdvancedSearch()" class="advSearchContent">
+      <kendo-svg-icon [icon]="rightIcon" class="right"></kendo-svg-icon>
+      Advanced Search
+    </span>
+  </button>
+
+  <kendo-label class="k-display-block">Result: {{getProjectCount()}} Contracts</kendo-label>
+  <div>
+    @if(isDataLoading) {
+    <span class="loader">Loading...</span>
+    <div class="k-block loader">
+        <kendo-loader [type]="loaderType" [size]="loaderSize"></kendo-loader>
+    </div>
+    }
+    <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
+      [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable
+      [expandedKeys]="expandedKeys" kendoTreeViewSelectable
+      [(selectedKeys)]="selectedKeys">
+      <ng-template kendoTreeViewNodeTemplate let-dataItem>
+        <div #nodeTemplate class="nodeItem">
+          <kendo-checkbox #checkedState [checkedState]="dataItem.IsSelected"></kendo-checkbox>
+          <kendo-label class="k-display-block mandatory">{{fetchText(dataItem)}}</kendo-label>
 
           @if (dataItem['isFavourite'] == true) {
-            <button kendoButton [svgIcon]="favouriteIcon"></button>
+          <button kendoButton [svgIcon]="favouriteIcon"></button>
           }
           @else if (dataItem['isFavourite'] == false) {
-            <button kendoButton [svgIcon]="notFavouriteIcon"></button>
+          <button kendoButton [svgIcon]="notFavouriteIcon"></button>
           }
-      </div>
+        </div>
       </ng-template>
     </kendo-treeview>
-    </div>
+  </div>
 </div>

@@ -6,11 +6,11 @@
 .container {
     width: 100%;
     height: 100%;
-    display: inline-flex;
+    display: flex;
 }
 
 .leftsideView {
-    width: 250px;
+    width: 350px;
     height: 100%;
     border-right-width: 1px;
     border-right-color: gray;
@@ -18,8 +18,8 @@
 
 .headingArea {
     display: flex;
-    //height: 60px;
-    height: 25px;
+    height: 65px;
+    //height: 25px;
     padding-bottom: 20px;
     padding-top: 20px;
 }
@@ -48,8 +48,8 @@ kendo-tabstrip {
 
 .verticalSeparator{
     height: 100%;
-    background-color: lightgray;
     width: 1px;
+    background-color: lightgray;
 }
 
 button {
@@ -58,5 +58,24 @@ button {
 }
 
 .rightSideView {
+    justify-self: right;
     width: 100%;
 }
+
+.rightContainer {
+    justify-items: right;
+}
+
+.content {
+    justify-items: stretch;
+}
+
+.treeViewArea {
+    background-color: red($color: #000000);
+    justify-items: stretch;
+    height: 100%;
+}
+
+// kendo-tabstrip-tab {
+//     background-color: blue;
+// }
