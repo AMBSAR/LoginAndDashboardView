@@ -38,16 +38,19 @@ kendo-circularprogressbar {
 
 .rightContainer {
   display: flex;
-  justify-content: right;
+  align-self: right;
   flex-wrap: nowrap;
+  position: relative;
   //overflow: hidden;
   margin-right: 25px;
-  width: fit-content;
+  width: auto;
+  background-color: red;
+  justify-self: right;
+  height: 65px;
 }
 
 .right {
   float: right;
-  position: static;
   align-self: center;
   justify-self: right;
   margin-left: 10px;

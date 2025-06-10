@@ -31,11 +31,11 @@
     <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
       [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable
       [expandedKeys]="expandedKeys" kendoTreeViewSelectable
-      [(selectedKeys)]="selectedKeys">
+      [(selectedKeys)]="selectedKeys" (selectionChange)="onSelectionChange($event)">
       <ng-template kendoTreeViewNodeTemplate let-dataItem>
-        <div #nodeTemplate class="nodeItem">
-          <kendo-checkbox [checkedState]="dataItem.IsSelected"></kendo-checkbox>
-          <kendo-label class="k-display-block mandatory">{{fetchText(dataItem)}}</kendo-label>
+        <div class="nodeItem">
+          <kendo-checkbox [checkedState]="dataItem.IsSelected" id="nodeCheckbox"></kendo-checkbox>
+          <kendo-label class="k-display-block text" id="nodeProjectName">{{fetchText(dataItem)}}</kendo-label>
 
           @if (dataItem['isFavourite'] == true) {
           <button kendoButton [svgIcon]="favouriteIcon" class="favButton"></button>

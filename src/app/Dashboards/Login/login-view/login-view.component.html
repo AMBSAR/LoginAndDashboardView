@@ -27,9 +27,8 @@
                          type="password" formControlName="password" (inputFocus)="autoPopulatePassword()"/>
                     </div>
                     <div class="rememberMeContainer">
-                        <kendo-checkbox [checkedState]="true" ></kendo-checkbox>
-                        <kendo-checkbox formControlName="isRememberMeSelected" ></kendo-checkbox>
-                        <kendo-label class="k-checkbox-label" [for]="checkedState" text="Remember me"></kendo-label>
+                        <kendo-checkbox formControlName="isRememberMeSelected" class="checkboxRememberme" ></kendo-checkbox>
+                        <kendo-label class="k-checkbox-label" text="Remember me"></kendo-label>
                     </div>
                 </div>
                 <div>

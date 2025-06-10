@@ -1,115 +1,121 @@
 <div class="container">
     @if(SelectedProject != null) {
         <div>
-            <div class="projectNameTitle">
-                <h2>{{SelectedProject.projectName}}</h2>
-            </div>
-            @if(HasAnyNotification) {
-            <div class="notification">
-                <kendo-svg-icon [icon]="bellIcon"></kendo-svg-icon>
-                <span>You have requested 3 primary resource re assignment requests <span class="highlightText">View
-                        requests</span></span>
-                <button kendoButton [svgIcon]="closeIcon" class="right"></button>
-            </div>
-            }
             <div>
-                <div class="headingArea">
-                    <kendo-label text="Filter Activities" class="left" #Heading />
-                    <button kendoButton>Clear Filter</button>
-                    <button kendoButton [svgIcon]="moreHorizontalIcon"></button>
-                    <button kendoButton [svgIcon]="expandIcon"></button>
+                <div class="projectNameTitle">
+                    <h2>{{SelectedProject.projectName}}</h2>
                 </div>
-                <div class="filterSelectionArea">
-                    <div>
-                        <kendo-label text="View As" />
-                        <kendo-multiselect [data]="viewTypes" [(ngModel)]="selectedViewType" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div>
-                        <kendo-label text="Functions" />
-                        <kendo-multiselect [data]="Funcitons" [(ngModel)]="selectedFunctions" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div>
-                        <kendo-label text="Document Type" />
-                        <kendo-multiselect [data]="DocumentTypes"
-                            [(ngModel)]="selectedDocumentTypes"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div>
-                        <kendo-label text="Activity Status" />
-                        <kendo-multiselect [data]="StatusList" [(ngModel)]="selectedStatusList" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div>
-                        <kendo-label text="Activity Type" />
-                        <kendo-multiselect [data]="ActivityTypeList"
-                            [(ngModel)]="selectedActivityTypes" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div>
-                        <kendo-label text="Finish By" />
-                        <kendo-dropdownlist [data]="FinishByList" [(ngModel)]="selectedFinishBy"
-                            defaultItem="Select" (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
-                    </div>
-                    <div>
-                        <kendo-label text="Date Type" />
-                        <kendo-dropdownlist [data]="DateTypeList" [(ngModel)]="selectedDateType"
-                            defaultItem="Select" (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
-                    </div>
+                @if(HasAnyNotification) {
+                <div class="notification">
+                    <kendo-svg-icon [icon]="bellIcon"></kendo-svg-icon>
+                    <span>You have requested 3 primary resource re assignment requests <span class="highlightText">View
+                            requests</span></span>
+                    <button kendoButton [svgIcon]="closeIcon" class="right"></button>
                 </div>
-                <div class="DocumentTypeWithCountSelectionArea">
-                    @for(let item of DocumentTypeSelectionList track) {
-                    <button kendoButton (click)="onDocumentTypeClicked(item.ID)">{{item.Label + " (" + item.Count +
-                        ")"}}</button>
-                    }
-                </div>
+                }
                 <div>
-                    <button kendoButton [svgIcon]="leftArrowButton" class="navigateButton" (click)="onPrevFW()" [disabled]="canEnableFWPrev()"></button>
-                    @for(let iter=0; iter < 4; ++iter) { 
-                        <button kendoButton (click)="onFiscalWeek(iter)">
-                        <div *ngClass="FWData[iter].fiscalWeek === 'Today' ? 'TypeToday' : FWData[iter].isCurrentFW ? 'TypeCurrFW' : 'TypeFW'">
-                            @if (FWData[iter].fiscalWeek === 'Today') {
-                                <kendo-label class=" fwHeading">{{FWData[iter].fiscalWeek}} </kendo-label>
-                            }
-                            @else {
-                                <kendo-label class=" fwHeading">{{FWData[iter].fiscalWeek + ", " + FWData[iter].year}} </kendo-label>
-                            }
-                            <kendo-label class="fw countData">{{FWData[iter].notCompleted + " of " FWData[iter].total}} </kendo-label>
+                    <div class="headingArea">
+                        <kendo-label text="Filter Activities" class="left" #Heading />
+                        <button kendoButton>Clear Filter</button>
+                        <button kendoButton [svgIcon]="moreHorizontalIcon"></button>
+                        <button kendoButton [svgIcon]="expandIcon"></button>
+                    </div>
+                    <div class="filterSelectionArea">
+                        <div>
+                            <kendo-label text="View As" />
+                            <kendo-multiselect [data]="viewTypes" [(ngModel)]="selectedViewType"
+                                (ngModelChange)="onViewTypeSelectionChanged()"></kendo-multiselect>
                         </div>
+                        <div>
+                            <kendo-label text="Functions" />
+                            <kendo-multiselect [data]="Funcitons" [(ngModel)]="selectedFunctions"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div>
+                            <kendo-label text="Document Type" />
+                            <kendo-multiselect [data]="DocumentTypes" [(ngModel)]="selectedDocumentTypes"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div>
+                            <kendo-label text="Activity Status" />
+                            <kendo-multiselect [data]="StatusList" [(ngModel)]="selectedStatusList"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div>
+                            <kendo-label text="Activity Type" />
+                            <kendo-multiselect [data]="ActivityTypeList" [(ngModel)]="selectedActivityTypes"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div>
+                            <kendo-label text="Finish By" />
+                            <kendo-dropdownlist [data]="FinishByList" [(ngModel)]="selectedFinishBy" defaultItem="Select"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
+                        </div>
+                        <div>
+                            <kendo-label text="Date Type" />
+                            <kendo-dropdownlist [data]="DateTypeList" [(ngModel)]="selectedDateType" defaultItem="Select"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
+                        </div>
+                    </div>
+                    <div class="DocumentTypeWithCountSelectionArea">
+                        @for(item of DocumentTypeSelectionList; track $index) {
+                        <button kendoButton (click)="onDocumentTypeClicked(item.ID)">{{item.Label + " (" + item.Count +
+                            ")"}}</button>
+                        }
+                    </div>
+                    <div>
+                        <button kendoButton [svgIcon]="leftArrowButton" class="navigateButton" (click)="onPrevFW()"
+                            [disabled]="canEnableFWPrev()"></button>
+                        @for(fw of FiscalWeekData; track $index) {
+                        <button kendoButton (click)="onFiscalWeek($index)">
+                            <div *ngClass="fw.fiscalWeek === 'Today' ? 'TypeToday' : fw.isCurrentFW ? 'TypeCurrFW' : 'TypeFW'">
+                                @if (fw.fiscalWeek === 'Today') {
+                                <kendo-label class=" fwHeading">{{fw.fiscalWeek}} </kendo-label>
+                                }
+                                @else {
+                                <kendo-label class=" fwHeading">{{fw.fiscalWeek + ", " + fw.year}} </kendo-label>
+                                }
+                                <kendo-label class="fw countData">{{fw.notCompleted + " of " + fw.total}} </kendo-label>
+                            </div>
                         </button>
                         }
-                        <button kendoButton [svgIcon]="rightArrowButton" class="navigateButton" (click)="onNextFW()" [disabled]="canEnableFWNext()"></button>
+                        <button kendoButton [svgIcon]="rightArrowButton" class="navigateButton" (click)="onNextFW()"
+                            [disabled]="canEnableFWNext()"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="activities">
-            <div class="header">
-                <kendo-label text="Activities" class="left" />
-                <kendo-label class="left">Result: {{ActivityCount}} Activities</kendo-label>
+            <div class="activities">
+                <div class="header">
+                    <kendo-label text="Activities" class="left" />
+                    <kendo-label class="left">Result: {{ActivityCount}} Activities</kendo-label>
 
-                <button kendoButton>Clear Filter</button>
-                <div>
-                    <kendo-textbox placeholder="Search" class="cornerRoundedTextBox" type="text" [(ngModel)]="searchText"
-                        (ngModelChange)="searchTable()">
-                    </kendo-textbox>
-                    <kendo-svg-icon [icon]="searchIcon" class="searchIcon"></kendo-svg-icon>
+                    <button kendoButton>Clear Filter</button>
+                    <div>
+                        <kendo-textbox placeholder="Search" class="cornerRoundedTextBox" type="text" [(ngModel)]="searchText"
+                            (ngModelChange)="searchTable()">
+                        </kendo-textbox>
+                        <kendo-svg-icon [icon]="searchIcon" class="searchIcon"></kendo-svg-icon>
+                    </div>
+                    <button kendoButton [svgIcon]="resizeIcon"></button>
+                    <button kendoButton [svgIcon]="settingsIcon"></button>
                 </div>
-                <button kendoButton [svgIcon]="resizeIcon"></button>
-                <button kendoButton [svgIcon]="settingsIcon"></button>
-            </div>
-            <div>
-                <kendo-grid [data]="TabularData">
-                    <kendo-grid-column field="PROJECT_ID" title="PROJECT_ID"> </kendo-grid-column>
-                    <kendo-grid-column field="PROJECT_NAME" title="PROJECT_NAME"> </kendo-grid-column>
-                    <kendo-grid-column field="ACT_ID" title="ACT_ID"> </kendo-grid-column>
-                    <kendo-grid-column field="ACTIVITY_NAME" title="ACTIVITY_NAME"> </kendo-grid-column>
-                    <kendo-grid-column field="PROMISE_DATE" title="PROMISE_DATE"> </kendo-grid-column>
-                    <kendo-grid-column field="ACKNOWLEDGE" title="ACKNOWLEDGE"> </kendo-grid-column>
-                    <kendo-grid-column field="ACKNOWLEDGE_DATE" title="ACKNOWLEDGE_DATE"> </kendo-grid-column>
-                </kendo-grid>
+                <div>
+                    <kendo-grid [data]="TabularData">
+                        <kendo-grid-column field="PROJECT_ID" title="PROJECT_ID"> </kendo-grid-column>
+                        <kendo-grid-column field="PROJECT_NAME" title="PROJECT_NAME"> </kendo-grid-column>
+                        <kendo-grid-column field="ACT_ID" title="ACT_ID"> </kendo-grid-column>
+                        <kendo-grid-column field="ACTIVITY_NAME" title="ACTIVITY_NAME"> </kendo-grid-column>
+                        <kendo-grid-column field="PROMISE_DATE" title="PROMISE_DATE"> </kendo-grid-column>
+                        <kendo-grid-column field="ACKNOWLEDGE" title="ACKNOWLEDGE"> </kendo-grid-column>
+                        <kendo-grid-column field="ACKNOWLEDGE_DATE" title="ACKNOWLEDGE_DATE"> </kendo-grid-column>
+                    </kendo-grid>
+                </div>
             </div>
         </div>
     }
     @else {
-        <div>
-            <h2>Please select one Project</h2>
-        </div>
+    <div>
+        <h2>Please select one Project</h2>
+    </div>
     }
 </div>

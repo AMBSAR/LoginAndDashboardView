@@ -26,7 +26,7 @@ export class TrainData {
     trainId: string = '';
     trainName: string = '';
     isSelected: boolean = false;
-    jobNumbers: JobData[] | null = null;
+    jobNumbers: JobData[] = [];
 
     constructor (train: Train) {
         this.trainId = train.trainId;
@@ -35,13 +35,13 @@ export class TrainData {
         if (train.mmInfo != null && train.mmInfo.length > 0) {
             train.mmInfo.forEach((x: MmInfo ) => {
                 if (x.jobNumber != null && x.jobNumber != '') {
-                this.jobNumbers?.push(new JobData(x.jobNumber));
+                this.jobNumbers.push(new JobData(x.jobNumber));
                 }
                 
                 if (x.childJobs != null && x.childJobs.length > 0) {
                     x.childJobs.forEach((x: string) => {
                         if (x != null && x != '') {
-                        this.jobNumbers?.push(new JobData(x));
+                        this.jobNumbers.push(new JobData(x));
                         }
                     });
                 }
@@ -56,7 +56,7 @@ export class ProjectData {
     isSelected: boolean = false;
     isFavourite: boolean = false;
     isActive: boolean = true;
-    trains: TrainData[] | null = null;
+    trains: TrainData[] = [];
 
     constructor (project: ProjectDetails) {
         this.projectId = project.projectId;
@@ -65,7 +65,7 @@ export class ProjectData {
 
         if (project.trains != null && project.trains.length > 0) {
             project.trains.forEach((x: Train ) => {
-                this.trains?.push(new TrainData(x));
+                this.trains.push(new TrainData(x));
             } )
         }
     }

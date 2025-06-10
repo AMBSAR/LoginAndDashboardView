@@ -55,7 +55,7 @@ kendo-treeview {
 
 .text {
   display: block;
-  width: 100px;
+  width: 170px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -64,12 +64,32 @@ kendo-treeview {
 .nodeItem {
     display: flex;
     justify-content: stretch;
+    align-items: center;
 }
 
 favButton {
     width: 10px;
     height: 10px;
     justify-self: right;
-    
+    position: absolute;
+    border-width: 0px;
+    background-color: transparent;
+    color: darkgreen;
+
+    // ::picker-icon {
+    //     width: 10px;
+    //     height: 10px;
+    //     color: darkgreen;
+    // }
+}
+
+#nodeCheckbox {
+    left: 5px;
+    position: absolute;
+}
+
+#nodeProjectName {
+    left: 35px;
+    position: absolute;
 }
 

@@ -1,20 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ProjectData } from '../../../../Classes/common-classes';
 import { EventManagerService } from '../../../../Services/event-manager.service';
 import { KENDO_SVGICON } from '@progress/kendo-angular-icons';
-import { xIcon, bellIcon, arrowDownIcon, moreHorizontalIcon, searchIcon, handleResizeIcon, gearIcon } from '@progress/kendo-svg-icons';
+import { xIcon, bellIcon, arrowDownIcon, moreHorizontalIcon, searchIcon,
+         handleResizeIcon, gearIcon, arrowLeftIcon, arrowRightIcon } from '@progress/kendo-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { KENDO_LABEL } from '@progress/kendo-angular-label';
 import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { DataLoaderService } from '../../../../Services/data-loader.service';
 import { FiscalWeekData } from '../../../../Interfaces/common-interfaces';
-import { KENDO_GRID } from '@progress/kendo-angular-grid';
-import { GridComponent, GridDataResult, DataStateChangeEvent} from '@progress/kendo-angular-grid';
+import { KENDO_GRID, GridComponent, GridDataResult, DataStateChangeEvent} from '@progress/kendo-angular-grid';
+import { KENDO_DROPDOWNS } from '@progress/kendo-angular-dropdowns';
+// import {
+//   DataBindingDirective,
+//   KENDO_GRID_EXCEL_EXPORT,
+//   KENDO_GRID_PDF_EXPORT,
+// } from "@progress/kendo-angular-grid";
 
 @Component({
   selector: 'app-ispo-dashboard',
   standalone: true,
-  imports: [KENDO_SVGICON, FormsModule, KENDO_LABEL, KENDO_BUTTONS, KENDO_GRID],
+  //imports: [KENDO_SVGICON, FormsModule, KENDO_GRID, KENDO_LABEL, KENDO_BUTTONS, KENDO_DROPDOWNS],
+  imports: [KENDO_SVGICON, FormsModule, KENDO_LABEL, KENDO_BUTTONS, KENDO_DROPDOWNS],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './ispo-dashboard.component.html',
   styleUrl: './ispo-dashboard.component.scss'
 })
@@ -57,6 +65,8 @@ export class IspoDashboardComponent implements OnInit {
   public searchIcon = searchIcon;
   public resizeIcon = handleResizeIcon;
   public settingsIcon = gearIcon;
+  public leftArrowButton = arrowLeftIcon;
+  public rightArrowButton = arrowRightIcon;
 
   constructor(private eventManager: EventManagerService, private dataLoader: DataLoaderService) {}
 
@@ -87,9 +97,17 @@ export class IspoDashboardComponent implements OnInit {
 
   onProjectSelectionChanged() {
     this.SelectedProject = this.eventManager.getProjectSelection();
+    this.reloadFullData();
+  }
+
+  reloadFullData() {
     this.dataLoader.publish("LOAD_ISPO_TABULARDATA");
     this.dataLoader.publish("LOAD_ISPO_FWDATA");
     this.dataLoader.publish("LOAD_ISPO_SUMMARY_DATA");
+  }
+
+  reloadTabularData() {
+    this.dataLoader.publish("LOAD_ISPO_TABULARDATA");
   }
 
   setTabularData() {
@@ -170,5 +188,14 @@ export class IspoDashboardComponent implements OnInit {
 
   onFiscalWeek(index: any) {
     let actualIndex = this.FWStart + index as number;
+    this.reloadTabularData();
+  }
+
+  onFilterSelectionChange() {
+    this.reloadTabularData();
+  }
+
+  onViewTypeSelectionChanged() {
+    this.reloadFullData();
   }
 }

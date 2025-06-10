@@ -21,6 +21,7 @@ export class DataLoaderService {
   private ISPOFWData: FiscalWeekData[] | undefined
   private ISPOSummaryData: SummaryData | undefined;
   private ISPOTabularColumns: ColumnList | undefined;
+  private SelectedProjects: any[] | undefined;
 
   constructor(private http: HttpClient) { 
     this.dataLoadedEventMgr.subscribe(msg => {
@@ -68,6 +69,14 @@ export class DataLoaderService {
 
   getISPOSummaryData() : any {
       return this.ISPOSummaryData;
+    }
+
+    setProjectSelection(selectedProjects: any[]) {
+      this.SelectedProjects = selectedProjects;
+    }
+
+    getSelectedProjects() {
+      return this.SelectedProjects;
     }
 
   publish(message: string) {

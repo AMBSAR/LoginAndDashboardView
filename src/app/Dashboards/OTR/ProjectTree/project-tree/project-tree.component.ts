@@ -5,7 +5,7 @@ import { KENDO_ICONS } from "@progress/kendo-angular-icons";
 import { arrowRightIcon } from '@progress/kendo-svg-icons';
 import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { KENDO_LABELS } from '@progress/kendo-angular-label';
-import { KENDO_TREEVIEW } from '@progress/kendo-angular-treeview'
+import { KENDO_TREEVIEW, TreeItem } from '@progress/kendo-angular-treeview'
 import { KENDO_TEXTBOX } from '@progress/kendo-angular-inputs';
 import { chevronRightIcon, searchIcon, starOutlineIcon, starIcon } from '@progress/kendo-svg-icons';
 import { ProjectListLoaderService } from '../../../../Services/project-list-loader.service';
@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { KENDO_INDICATORS,LoaderType,LoaderThemeColor,LoaderSize,} from "@progress/kendo-angular-indicators";
+import { DataLoaderService } from '../../../../Services/data-loader.service';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class ProjectTreeComponent implements OnInit {
 
   public isDataLoading = false;
 
-  constructor(private dataLoaderService: ProjectListLoaderService) { }
+  constructor(private dataLoaderService: ProjectListLoaderService, private dataLoader: DataLoaderService) { }
 
   public loaderType : LoaderType = <LoaderType>"pulsing";
     public loaderSize: LoaderSize = <LoaderSize>"medium";
@@ -177,5 +178,10 @@ export class ProjectTreeComponent implements OnInit {
     }
 
     this.isDataLoading = false;
+  }
+
+  public onSelectionChange(event: TreeItem): void {
+    this.dataLoader.setProjectSelection(this.selectedKeys);
+    this.dataLoader.publish("PROJECT_SELECTION_CHANGED");
   }
 }
