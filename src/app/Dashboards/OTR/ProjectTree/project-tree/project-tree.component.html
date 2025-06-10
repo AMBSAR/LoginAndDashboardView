@@ -38,10 +38,10 @@
           <kendo-label class="k-display-block mandatory">{{fetchText(dataItem)}}</kendo-label>
 
           @if (dataItem['isFavourite'] == true) {
-          <button kendoButton [svgIcon]="favouriteIcon"></button>
+          <button kendoButton [svgIcon]="favouriteIcon" class="favButton"></button>
           }
           @else if (dataItem['isFavourite'] == false) {
-          <button kendoButton [svgIcon]="notFavouriteIcon"></button>
+          <button kendoButton [svgIcon]="notFavouriteIcon" class="favButton"></button>
           }
         </div>
       </ng-template>

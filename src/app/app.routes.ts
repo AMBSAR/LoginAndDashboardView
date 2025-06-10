@@ -8,64 +8,6 @@ import { OperationsDashboardComponent } from './Dashboards/OTR/operations-dashbo
 import { HomePageComponent } from './Dashboards/Main/home-page/home-page.component';
 import { authGuard } from './Common/Guards/auth.guard';
 
-// export const routes: Routes = [
-//     {
-//         path: 'login',
-//         component: LoginViewComponent
-//     },
-//     {
-//         path: 'main',
-//         component: IEPMainDashboardComponent,
-//         canActivate : [authGuard],
-//     },
-//     {
-//         path: 'home',
-//         loadComponent: () =>
-//             import('./Dashboards/Main/home-page/home-page.component').then(c => c.HomePageComponent),
-//         //component: HomePageComponent,
-//         outlet: 'Dashboard',
-//         //canActivate : [authGuard],
-//     },
-//     {
-//         path: 'OTR',
-//         loadComponent: () =>
-//             import('./Dashboards/OTR/otrdashboard/otrdashboard.component').then(c => c.OTRDashboardComponent),
-//         //component: OTRDashboardComponent,
-//         outlet: 'Dashboard',
-//         //canActivate : [authGuard],
-//     },
-//     {
-//         path: 'Operations',
-//         loadComponent: () =>
-//             import('./Dashboards/OTR/operations-dashboard/operations-dashboard.component').then(c => c.OperationsDashboardComponent),
-//         outlet: 'ToolDashboard',
-//                 //canActivate : [authGuard]
-//     },
-//     {
-//         path: 'NPD',
-//         loadComponent: () =>
-//             import('./Dashboards/page-tbd/page-tbd.component').then(c => c.PageTBDComponent),
-//         outlet: 'Dashboard',
-//         //canActivate : [authGuard]
-//     }, {
-//         path: '**',
-//         loadComponent: () =>
-//             import('./Dashboards/page-not-found/page-not-found.component').then(c => c.PageNotFoundComponent),
-//         outlet: 'Dashboard',
-//         //canActivate : [authGuard]
-//     },
-//     {
-//         path: '',
-//         redirectTo: '/main',
-//         pathMatch: 'full'
-//     },
-//     {
-//         path: '**',
-//         component: PageNotFoundComponent
-//     }
-// ];
-
-
 export const routes: Routes = [
     {
         path: 'login',
@@ -81,12 +23,13 @@ export const routes: Routes = [
                 path: 'home',
                 loadComponent: () =>
                     import('./Dashboards/Main/home-page/home-page.component').then(c => c.HomePageComponent),
+                canActivate : [authGuard]
             },
             {
                 path: 'OTR',
                 loadComponent: () =>
                     import('./Dashboards/OTR/otrdashboard/otrdashboard.component').then(c => c.OTRDashboardComponent),
-                //canActivate: [authGuard],
+                canActivate: [authGuard],
                 children: [
                     {
                         path: 'Operations',
@@ -103,7 +46,7 @@ export const routes: Routes = [
                         path: '**',
                         loadComponent: () =>
                             import('./Dashboards/page-tbd/page-tbd.component').then(c => c.PageTBDComponent),
-                        //canActivate : [authGuard]
+                        canActivate : [authGuard]
                     },
                 ],
             },
@@ -111,7 +54,7 @@ export const routes: Routes = [
                 path: 'NPD',
                 loadComponent: () =>
                     import('./Dashboards/page-tbd/page-tbd.component').then(c => c.PageTBDComponent),
-                //canActivate : [authGuard]
+                canActivate : [authGuard]
             },
             {
                 path: '',
@@ -123,57 +66,11 @@ export const routes: Routes = [
                 component: PageNotFoundComponent
             }
         ],
-        // children: [
-        //     {
-        //         path: 'home',
-        //         loadComponent: () =>
-        //             import('./Dashboards/Main/home-page/home-page.component').then(c => c.HomePageComponent),
-        //         outlet: 'Dashboard',
-        //     },
-        //     {
-        //         path: 'OTR',
-        //         loadComponent: () =>
-        //             import('./Dashboards/OTR/otrdashboard/otrdashboard.component').then(c => c.OTRDashboardComponent),
-        //         outlet: 'Dashboard',
-        //         children: [
-        //             {
-        //                 path: 'Operations',
-        //                 loadComponent: () =>
-        //                     import('./Dashboards/OTR/operations-dashboard/operations-dashboard.component').then(c => c.OperationsDashboardComponent),
-        //                 outlet: 'ToolDashboard',
-        //                 canActivate: [authGuard]
-        //             }
-        //         ],
-        //         canActivate: [authGuard],
-        //     },
-        //     {
-        //         path: 'NPD',
-        //         loadComponent: () =>
-        //             import('./Dashboards/page-tbd/page-tbd.component').then(c => c.PageTBDComponent),
-        //         outlet: 'Dashboard',
-        //         //canActivate : [authGuard]
-        //     },
-        //     {
-        //         path: '',
-        //         redirectTo: 'main/(Dashboard:home)',
-        //         outlet: 'Dashboard',
-        //         //canActivate : [authGuard]
-        //     },
-        //     {
-        //         path: '**',
-        //         loadComponent: () =>
-        //             import('./Dashboards/page-tbd/page-tbd.component').then(c => c.PageTBDComponent),
-        //         outlet: 'Dashboard',
-        //         //canActivate : [authGuard]
-        //     }
-        // ],
-
-        //canActivate: [authGuard],
+        canActivate : [authGuard]
     },
     {
         path: '',
-        //redirectTo: '/login',
-        redirectTo: '/main/OTR',
+        redirectTo: '/login',
         pathMatch: 'full',
     },
     {
