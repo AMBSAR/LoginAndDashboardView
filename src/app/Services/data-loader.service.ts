@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { FiscalWeekData, ISPOTabularDataList, SummaryData } from '../Interfaces/common-interfaces';
+import { FiscalWeekData, ISPOTabularDataList, SummaryData, ColumnList } from '../Interfaces/common-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class DataLoaderService {
   ISPO_Tabular_URL: string = '/assets/JSON_Files/ISPO_TabularData.json';
   ISPO_FW_URL: string = '/assets/JSON_Files/ISPOFiscalWeekData.json';
   ISPO_SUMMARY_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
+  ISPO_COLUMNS_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
 
   private messageSource = new BehaviorSubject('projectTreeView');
   dataLoadedEventMgr = this.messageSource.asObservable();
@@ -44,7 +45,7 @@ export class DataLoaderService {
     loadISPOFWData() {
     this.ISPOFWData = undefined;
 
-    this.http.get<ISPOFWData[]>(this.ISPO_FW_URL).subscribe((res) => {
+    this.http.get<FiscalWeekData[]>(this.ISPO_FW_URL).subscribe((res) => {
       this.ISPOFWData = res;
 
       this.publish("ISPO_FW_DATA_LOADED");
@@ -58,7 +59,7 @@ export class DataLoaderService {
     loadISPOSummaryData() {
     this.ISPOSummaryData = undefined;
 
-    this.http.get<SummaryData>(this.ISPOSummaryData).subscribe((res) => {
+    this.http.get<SummaryData>(this.ISPO_SUMMARY_URL).subscribe((res) => {
       this.ISPOSummaryData = res;
 
       this.publish("ISPO_SUMMARY_DATA_LOADED");

@@ -34,7 +34,7 @@
       [(selectedKeys)]="selectedKeys">
       <ng-template kendoTreeViewNodeTemplate let-dataItem>
         <div #nodeTemplate class="nodeItem">
-          <kendo-checkbox #checkedState [checkedState]="dataItem.IsSelected"></kendo-checkbox>
+          <kendo-checkbox [checkedState]="dataItem.IsSelected"></kendo-checkbox>
           <kendo-label class="k-display-block mandatory">{{fetchText(dataItem)}}</kendo-label>
 
           @if (dataItem['isFavourite'] == true) {

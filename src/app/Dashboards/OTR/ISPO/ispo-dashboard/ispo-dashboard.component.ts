@@ -8,17 +8,13 @@ import { KENDO_LABEL } from '@progress/kendo-angular-label';
 import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { DataLoaderService } from '../../../../Services/data-loader.service';
 import { FiscalWeekData } from '../../../../Interfaces/common-interfaces';
-//import { KENDO_GRID } from '@progress/kendo-angular-grid';
-// import {
-//     GridComponent,
-//     GridDataResult,
-//     DataStateChangeEvent
-// } from '@progress/kendo-angular-grid';
+import { KENDO_GRID } from '@progress/kendo-angular-grid';
+import { GridComponent, GridDataResult, DataStateChangeEvent} from '@progress/kendo-angular-grid';
 
 @Component({
   selector: 'app-ispo-dashboard',
   standalone: true,
-  imports: [KENDO_SVGICON, FormsModule, KENDO_LABEL, KENDO_BUTTONS],
+  imports: [KENDO_SVGICON, FormsModule, KENDO_LABEL, KENDO_BUTTONS, KENDO_GRID],
   templateUrl: './ispo-dashboard.component.html',
   styleUrl: './ispo-dashboard.component.scss'
 })
@@ -165,7 +161,7 @@ export class IspoDashboardComponent implements OnInit {
   }
 
   onDocumentTypeClicked(id: any) {
-
+    
   }
 
   searchTable() {

@@ -1,8 +1,10 @@
-<div class="ModuleItemCard" (click)="selectItem(Data.ModuleName)">
-    <div>
-    <img src={{Data.Icon}} class="moduleCard-icon" alt="...">
-    </div>
-    <div class="text">
-        <Label>{{Data.ModuleName}}</Label>
-    </div>
+<div class="ModuleItemCard">
+    <button kendoButton (click)="selectItem(Data.ModuleName)">
+        <div>
+            <img src={{Data.Icon}} class="moduleCard-icon" alt="...">
+        </div>
+        <div class="text">
+            <Label>{{Data.ModuleName}}</Label>
+        </div>
+    </button>
 </div>
