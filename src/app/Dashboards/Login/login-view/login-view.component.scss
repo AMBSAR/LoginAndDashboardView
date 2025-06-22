@@ -19,7 +19,7 @@
 
 .outerBorder {
     border-radius: 10px;
-    box-shadow: 0px 0px 20px 5px rgba(120, 207, 228, 0.35);
+    //box-shadow: 0px 0px 20px 5px rgba(120, 207, 228, 0.35);
     width: 450px;
     height: 550px;
     padding: 50px;
@@ -30,6 +30,7 @@ img {
     align-items: center;
     vertical-align: top;
     margin-bottom: 45px;
+    height:35px;
 }
 
 h1 {
@@ -43,30 +44,44 @@ kendo-textbox {
 }
 
 .inputControlsContainer {
-    width:250;
+    width:375;
     align-items: first baseline;
 }
 
 .login {
     align-self: center;
-    height: 30px;
-    width: 250px;
+    height: 45px;
+    width: 375px;
     margin-bottom: 15px;
 
-   &:hover {
-    box-shadow: 0px 0px 2px 3px rgba(120, 207, 228, 0.35);
-    }
+//    &:hover {
+//     box-shadow: 0px 0px 2px 3px rgba(120, 207, 228, 0.35);
+//     }
+}
+
+kendo-textbox {
+    text-indent: 1em;
 }
 
 kendo-label {
     font-size: small;
     margin-bottom: 5px;
+    font-weight: bold;
 }
+
+.k-checkbox-label {
+    margin-top: 2px;
+    font-size: small;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
 
 .rememberMeContainer {
     display: flex;
     justify-items: left;
     margin-bottom: 25px;
+    align-items: center;
 } 
 
 input[type="checkbox"] {
@@ -112,7 +127,14 @@ kendo-loader {
 }
 
 .checkboxRememberme {
-    color:rgb(20, 125, 100);
-    background-color: rgb(20, 125, 100);
-    accent-color: rgb(20, 125, 100);
+    //color:rgb(20, 125, 100);
+    color: k-color(primary);
+    //background-color: rgb(20, 125, 100);
+    //accent-color: rgb(20, 125, 100);
+    margin-right: 10px;
+}
+
+
+.k-input-inner {
+    text-indent: 1em !important;
 }

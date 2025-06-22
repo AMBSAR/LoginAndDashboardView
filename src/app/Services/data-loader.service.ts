@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpParams  } from '@angular/common/http';
+import { BehaviorSubject, Observable, timeout } from 'rxjs';
 import { FiscalWeekData, ISPOTabularDataList, SummaryData, ColumnList } from '../Interfaces/common-interfaces';
 
 @Injectable({
@@ -9,10 +9,16 @@ import { FiscalWeekData, ISPOTabularDataList, SummaryData, ColumnList } from '..
 
 export class DataLoaderService {
 
+  serverURL: string = 'http://localhost:3000';
+  LOGIN_URL: string = '/login';
+  // ISPO_Tabular_URL: string = '/ispoTabularData';
+  // ISPO_FW_URL: string = '/ispoFwSummary';
+  // ISPO_SUMMARY_URL: string = '/isposummary';
+  ISPO_COLUMNS_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
   ISPO_Tabular_URL: string = '/assets/JSON_Files/ISPO_TabularData.json';
   ISPO_FW_URL: string = '/assets/JSON_Files/ISPOFiscalWeekData.json';
   ISPO_SUMMARY_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
-  ISPO_COLUMNS_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
+  // ISPO_COLUMNS_URL: string = '/assets/JSON_Files/ISPOSummaryData.json';
 
   private messageSource = new BehaviorSubject('projectTreeView');
   dataLoadedEventMgr = this.messageSource.asObservable();
@@ -28,6 +34,35 @@ export class DataLoaderService {
       this.onNotify(msg);
     });
   }
+
+  getFullURL(url:string) {
+    return this.serverURL + url;
+  }
+
+login(user: string, pwd: string) : Observable<any> {
+  console.log(user,pwd);
+  const params = new HttpParams()
+      .set('user', user)
+      .set('pwd', pwd);
+    // this.http.get(this.getFullURL(this.LOGIN_URL),{params}).pipe(timeout(60000)).subscribe((res) => {
+    //   console.log("Response Received - " + res);
+    //   return res
+    // });
+     return this.http.get(this.getFullURL(this.LOGIN_URL), { params }).pipe(timeout(60000));
+}
+
+getItems(api: string): Observable<any> {
+  return this.http.get(this.getFullURL(api));
+}
+
+postItem(api: string, payload: any): Observable<any> {
+  return this.http.post(this.getFullURL(api), payload);
+}
+
+getData(api: string): Observable<any> {
+  return this.http.get(this.getFullURL(api));
+}
+
 
   loadISPOTabularData() {
     this.ISPOTabularData = undefined;

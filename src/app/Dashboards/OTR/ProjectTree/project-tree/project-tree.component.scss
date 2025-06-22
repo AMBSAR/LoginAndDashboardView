@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -6,7 +5,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -33,13 +32,14 @@
     margin: auto;
     font-size: small;
 }
-.advSearchContent{
+
+.advSearchContent {
     text-align: center;
     display: flex;
     justify-self: center;
     justify-items: center;
     height: 100%;
-    position:relative;
+    position: relative;
 }
 
 kendo-treeview {
@@ -54,11 +54,19 @@ kendo-treeview {
 
 
 .text {
-  display: block;
-  width: 170px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+    display: block;
+    width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.jobText {
+    display: block;
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .nodeItem {
@@ -67,14 +75,19 @@ kendo-treeview {
     align-items: center;
 }
 
+.nodeItem.selected {
+    background-color: var(--menu-item-highlight-color);
+}
+
 favButton {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     justify-self: right;
     position: absolute;
     border-width: 0px;
     background-color: transparent;
     color: darkgreen;
+    opacity: 0.3;
 
     // ::picker-icon {
     //     width: 10px;
@@ -83,13 +96,25 @@ favButton {
     // }
 }
 
+unfavourite {
+    opacity: 1.0;
+}
+
 #nodeCheckbox {
-    left: 5px;
-    position: absolute;
+    left: 0px;
+    justify-self: left;
+    position: relative;
 }
 
 #nodeProjectName {
-    left: 35px;
-    position: absolute;
+    margin-left: 10px;
+    justify-self: left;
+    position: relative;
 }
 
+
+.custom-icon {
+    font-size: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+}

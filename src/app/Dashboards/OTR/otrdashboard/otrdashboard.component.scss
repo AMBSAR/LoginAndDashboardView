@@ -1,25 +1,42 @@
 
+body,html {
+    margin: 0;
+    padding: 0;
+    flex:1;
+    display:flex;
+    justify-content: stretch;
+    justify-items: stretch;
+    justify-self: stretch;
+    align-items: flex-start;
+}
+
 * {
     box-sizing: border-box;
 }
 
 .container {
-    width: 100%;
     height: 100%;
+    width: 100%;
+    flex:1;
+    flex-grow: 1;
     display: flex;
+    justify-self: stretch;
+    justify-items:stretch;
+    justify-content: stretch;
 }
 
 .leftsideView {
-    width: 350px;
-    height: 100%;
+    width: 400px;
+    flex: 1;
+    flex-grow: 1;
     border-right-width: 1px;
     border-right-color: gray;
+    background-color: whitesmoke;
 }
 
 .headingArea {
     display: flex;
     height: 65px;
-    //height: 25px;
     padding-bottom: 20px;
     padding-top: 20px;
 }
@@ -38,6 +55,8 @@
 
 kendo-tabstrip {
     font-size:x-small;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .separator {
@@ -71,11 +90,14 @@ button {
 }
 
 .treeViewArea {
-    background-color: red($color: #000000);
-    justify-items: stretch;
-    height: 100%;
+    flex: 1;
+    flex-grow: 1;
+    overflow: auto;
 }
 
-// kendo-tabstrip-tab {
-//     background-color: blue;
-// }
+app-project-tree {
+    height: 700px;
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+}

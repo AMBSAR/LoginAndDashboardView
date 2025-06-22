@@ -100,11 +100,11 @@ button {
   margin-top: -7px;
   height: 15px;
   width: 15px;
-  border-radius: 50px;
+  border-radius: 15px;
   color: white;
   font-size: xx-small;
   position: absolute;
-  vertical-align: super;
+  align-content: center;
   text-align: center;
 }
 
@@ -112,11 +112,144 @@ button {
   background-color: rgb(20, 125, 100);
   height: 15px;
   width: 15px;
-  border-radius: 50px;
+  border-radius: 15px;
   color: white;
   font-size: xx-small;
   position: absolute;
-  vertical-align:middle;
+  justify-content: center;
+  align-content: center;
   text-align: center;
 }
 
+#ProfileView {
+  position: absolute;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-end;
+  justify-items: center;
+  justify-content: stretch;
+  align-items: center;
+  align-content: center;
+  right: 0px;
+  Top: bottom(UserProfile);
+  z-index: 1000;
+  outline: 2px solid lightgray;
+  box-shadow: 2px -2px 10px 10px rgba(156, 172, 171, 0.5);
+  height: 275px;
+  width:310px;
+}
+
+#ProfileView > ul {
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 20px;
+  
+  :first-child {
+    justify-content: center;
+    justify-items: center;
+  }
+
+  :not(:first-child, .profileData) {
+    height: 50px;
+    padding: 5px;
+    justify-content: left;
+    align-items: center;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+  }
+}
+
+#ProfileView h4 {
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+}
+
+#ProfileView li {
+  position: relative;
+
+  :first-child {
+    justify-content: center;
+    justify-items: center;
+  }
+
+  :not(:first-child, .profileData) {
+    height: 40px;
+    justify-content: stretch;
+    align-items: center;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid lightgray;
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: left;
+  justify-self: left;
+  justify-items: stretch;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.options > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:last-child {
+    justify-self: flex-end;
+  }
+}
+
+#ProfileView profilePic {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+
+#ProfileView profileData {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+}
+
+#ProfileView img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  border-width: 0px;
+}
+
+#ProfileView kendo-svg-icon {
+  color: black;
+  padding: 0 5px;
+  height: 30px;
+  width: 30px;
+}
+
+.buttonText {
+  color: gray;
+}
+
+button.right:hover, kendo-svg-icon.right:hover {
+  padding: 2px;
+}

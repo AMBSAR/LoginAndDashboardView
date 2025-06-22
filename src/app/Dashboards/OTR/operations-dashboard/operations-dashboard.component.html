@@ -5,11 +5,18 @@
         </div>
         <div class="rightContainer">
             <div class="lastUploaded right">
-                <span class="textPart" >Last Uploaded: <span class="valuePart">{{LastUploadedDate}}</span></span>
+                <span class="textPart">Last Uploaded: <span class="valuePart">{{LastUploadedDate}}</span></span>
             </div>
             <div class="verticalSeparator"></div>
             <div>
-                <span class="right">YTD </span>
+                <span class="right ytdPercentage">YTD
+                    <div class="percentage-circle">
+                        <div class="circle" [style.--percentage]="YTD_Value">
+                            <span class="value">{{ YTD_Value }}%</span>
+                        </div>
+                    </div>
+                </span>
+
                 <!-- <div class="small-progress">
                     <kendo-circularprogressbar [value]="YTD_Value" class="right">
                         <ng-template kendoCircularProgressbarCenterTemplate let-value="value">
@@ -19,7 +26,7 @@
                 </div> -->
             </div>
             <div>
-                <button kendoButton class="advanceSearch"> Do Vs Buy</button>
+                <button kendoButton class="dovsbuy"> Do Vs Buy</button>
             </div>
         </div>
     </div>

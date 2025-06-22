@@ -1,67 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+
 .container {
-    width: 100%;
-    position: relative;
-    justify-self: stretch;
+  flex: 1;
+  //width: 100%;
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
 }
 
 .header {
-    display: flex;
-    height: 65px;
-    justify-items: center;
-    position: relative;
-    justify-items: stretch;
-    margin-bottom: 10px;
+  flex: 1;
+  display: flex;
+  height: 65px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  justify-items: stretch;
 }
 
 .verticalSeparator {
-    width: 1px;
-    height: 50%;
-    background-color: gray;
-    vertical-align: middle;
-    justify-self: center;
-    margin:50%
+  width: 5px;
+  height: 50%;
+  background-color: red;
 }
 
 kendo-circularprogressbar {
-    height: 25px;
-    width: 25px;
-    margin: 5px;
+  height: 25px;
+  width: 25px;
+  margin: 5px;
 }
 
 .left {
   margin: 10px;
   display: flex;
-  width: 100%;
+  flex: 1;
   align-self: center;
   justify-self: flex-start;
 }
 
 .rightContainer {
+  flex: 2;
   display: flex;
-  align-self: right;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
   flex-wrap: nowrap;
   position: relative;
   //overflow: hidden;
   margin-right: 25px;
-  width: auto;
-  justify-self: right;
-  height: 65px;
 }
 
 .right {
-  float: right;
   align-self: center;
-  justify-self: right;
-  margin-left: 10px;
-  width: fit-content;
+  margin-right: 10px;
 }
 
 button {
-    align-self: center;
-    background-color: rgb(20, 125, 100);
-    color: white;
-    border-radius: 5px;
-    width: 50px;
+  padding: 5px;
+  align-self: center;
+  background-color: rgb(20, 125, 100);
+  color: white;
+  border-radius: 5px;
+  width: 120px;
 }
 
 .content {
@@ -88,10 +93,62 @@ button {
 
 .lastUploaded {
   display: flex;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
-.dovsbuy{
-  display: block;
+button .dovsbuy {
+  display: flex;
   justify-content: center;
+  align-content: center;
+  padding: 5px;
+  width: 120px;
+  white-space: nowrap;
+  border-radius: 5px;
+  text-align: center;
+  height: 25px;
+}
+
+.percentage-circle {
+  .circle {
+    --percentage: 75;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(#02a783 calc(var(--percentage) * 1%), #e0e0e0 0);
+
+    position: relative;
+    padding: 2px; // keep or adjust if needed
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 31px; // made it larger (was 28px)
+      height: 31px; // made it larger (was 28px)
+      border-radius: 50%;
+      background-color: #ecf0f1;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .value {
+      position: relative;
+      z-index: 2;
+      font-size: 12px;
+      color: #000;
+      font-weight: 500;
+    }
+  }
+}
+
+.ytdPercentage {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  column-gap: 10px;
 }

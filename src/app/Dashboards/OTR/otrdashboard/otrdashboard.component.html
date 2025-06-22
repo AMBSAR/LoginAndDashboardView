@@ -1,9 +1,10 @@
 <div class="container">
+    @if(showTreeView) {
     <div class="leftsideView">
         <div class="headingArea">
             <kendo-label text="Filter Contracts" class="left" #Heading />
             <button kendoButton [svgIcon]="moreHorizontalIcon"></button>
-            <button kendoButton [svgIcon]="collapseIcon"></button>
+            <button kendoButton [svgIcon]="collapseIcon" (click)="onCollapseTreeView()"></button>
         </div>
         <div class="separator">
         </div>
@@ -76,9 +77,10 @@
     </div>
     <div class="verticalSeparator">
         </div>
+    }
     <div class="rightSideView">
         <div class="rightContainer">
-            <router-outlet></router-outlet>
+            <router-outlet style="height: 100%; width: 100%;"></router-outlet>
         </div>
     </div>
 </div>

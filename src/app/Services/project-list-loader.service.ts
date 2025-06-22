@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { ProjectDetails } from '../Interfaces/common-interfaces';
 import { ProjectData } from '../Classes/common-classes';
 import { BehaviorSubject, of } from 'rxjs';
+import { DataLoaderService } from './data-loader.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectListLoaderService {
 
-  url: string = '/assets/JSON_Files/ContractList.json';
+  //url: string = '/assets/JSON_Files/ContractList.json';
+  url: string = '/allcontracts';
   projectDetailsList: ProjectDetails[] | undefined;
   projectList: ProjectData[] | undefined;
   myProjectList: ProjectData[] | undefined;
@@ -19,8 +21,36 @@ export class ProjectListLoaderService {
 
   private isDataLoadingInProgress: boolean = false;
 
-  constructor(private http: HttpClient) {
-    this.loadData();
+  constructor(private http: HttpClient, private dataLoader: DataLoaderService) {
+    //this.loadData();
+  }
+
+
+  loadDataFromServer() {
+    this.dataLoader.getItems(this.url).subscribe((x: any) => {
+      this.setProjectData(x);
+    })
+  }
+
+  setProjectData(res: any) {
+    this.isDataLoadingInProgress = true;
+    this.projectList = [];
+    this.myProjectList = [];
+
+    this.projectDetailsList = res as ProjectDetails[];
+      if (this.projectDetailsList != undefined) {
+        this.projectDetailsList.forEach((x: ProjectDetails) => {
+          let data = new ProjectData(x);
+          this.projectList?.push(data);
+
+          if (x.isMyProject) {
+            this.myProjectList?.push(data);
+          }
+        });
+      }
+
+      this.isDataLoadingInProgress = false;
+      this.publish("DATA_LOADED");
   }
 
   loadData() {

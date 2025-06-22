@@ -7,20 +7,21 @@ import { KENDO_BUTTONS } from '@progress/kendo-angular-buttons';
 import { KENDO_LABELS } from '@progress/kendo-angular-label';
 import { KENDO_TREEVIEW, TreeItem } from '@progress/kendo-angular-treeview'
 import { KENDO_TEXTBOX } from '@progress/kendo-angular-inputs';
-import { chevronRightIcon, searchIcon, starOutlineIcon, starIcon } from '@progress/kendo-svg-icons';
+import { chevronRightIcon, searchIcon, starOutlineIcon, starIcon, chevronDownIcon } from '@progress/kendo-svg-icons';
 import { ProjectListLoaderService } from '../../../../Services/project-list-loader.service';
 import { JobData, ProjectData, TrainData } from '../../../../Classes/common-classes';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
+import { async, of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { KENDO_INDICATORS,LoaderType,LoaderThemeColor,LoaderSize,} from "@progress/kendo-angular-indicators";
+import { KENDO_INDICATORS, LoaderType, LoaderThemeColor, LoaderSize, } from "@progress/kendo-angular-indicators";
 import { DataLoaderService } from '../../../../Services/data-loader.service';
 
 
 @Component({
   selector: 'app-project-tree',
   standalone: true,
-  imports: [KENDO_INPUTS, KENDO_ICONS, KENDO_BUTTONS, KENDO_LABELS, KENDO_TREEVIEW, KENDO_TEXTBOX, FormsModule, KENDO_INDICATORS],
+  imports: [KENDO_INPUTS, KENDO_ICONS, KENDO_BUTTONS, KENDO_LABELS, KENDO_TREEVIEW,
+    KENDO_TEXTBOX, FormsModule, KENDO_INDICATORS, CommonModule],
   templateUrl: './project-tree.component.html',
   styleUrl: './project-tree.component.scss'
 })
@@ -34,6 +35,7 @@ export class ProjectTreeComponent implements OnInit {
   value = "input value";
   public arrowRightIcon = arrowRightIcon;
   public rightIcon = chevronRightIcon;
+  public downIcon = chevronDownIcon;
   public searchIcon = searchIcon;
   public favouriteIcon = starIcon;
   public notFavouriteIcon = starOutlineIcon;
@@ -41,44 +43,45 @@ export class ProjectTreeComponent implements OnInit {
 
   public ProjectDataList: any[] = [];
   private projectDataListTemp: any[] = [];
+  private selectedProjects : any[] = [];
   public selectedKeys: any[] = [];
 
   public expandedKeys: any[] = ["0", "1"];
 
-  public checkedKeys: any[] = ["0_1"];
+  public checkedKeys: any[] = ["0"];
 
   public isDataLoading = false;
+  public selectedItem: any = null
+
 
   constructor(private dataLoaderService: ProjectListLoaderService, private dataLoader: DataLoaderService) { }
 
-  public loaderType : LoaderType = <LoaderType>"pulsing";
-    public loaderSize: LoaderSize = <LoaderSize>"medium";
-    
+  public loaderType: LoaderType = <LoaderType>"pulsing";
+  public loaderSize: LoaderSize = <LoaderSize>"medium";
+
   onAdvancedSearch() {
   }
 
   ngOnInit(): void {
     this.isDataLoading = true;
-
+    this.dataLoaderService.loadDataFromServer();
     this.dataLoaderService.projectLoadedMsg.subscribe(msg => {
 
-      if (msg == "DATA_LOADED") {
-        this.loadProjectData();
-      }
+      this.onNotify(msg);
     });
   }
 
-  loadProjectData() {
+  async loadProjectData() {
 
     this.isDataLoading = true;
     if (this.Type === 'All') {
-      this.projectDataListTemp = this.dataLoaderService.getAllProjectDataList();
+      this.projectDataListTemp = await this.dataLoaderService.getAllProjectDataList();
     }
     else if (this.Type === 'My') {
-      this.projectDataListTemp = this.dataLoaderService.getMyProjectDataList();
+      this.projectDataListTemp = await this.dataLoaderService.getMyProjectDataList();
     }
 
-    this.applySearch();
+    await this.applySearch();
     this.isDataLoading = false;
   }
 
@@ -156,8 +159,8 @@ export class ProjectTreeComponent implements OnInit {
     return this.ProjectDataList?.length;
   }
 
-  searchTree() {
-    this.applySearch();
+  async searchTree() {
+    await this.applySearch();
   }
 
   applySearch() {
@@ -167,7 +170,7 @@ export class ProjectTreeComponent implements OnInit {
       if (this.projectDataListTemp?.length > 0) {
         this.ProjectDataList = [];
         this.projectDataListTemp.forEach((x: any) => {
-          if (x.contractName != undefined && (x.contractName as string).includes(this.searchText)) {
+          if (x.projectName != undefined && (x.projectName as string).includes(this.searchText)) {
             this.ProjectDataList.push(x);
           }
         });
@@ -180,8 +183,60 @@ export class ProjectTreeComponent implements OnInit {
     this.isDataLoading = false;
   }
 
-  public onSelectionChange(event: TreeItem): void {
-    this.dataLoader.setProjectSelection(this.selectedKeys);
+  public onSelectionChange(event: any): void {
+
+    let index = parseInt(event.item.index);
+    let project = this.ProjectDataList.at(index);
+
+    if (this.checkedKeys.indexOf(event.item.index) > -1) {
+      this.selectedProjects.push(project);
+    }
+    else {
+      
+    }
+    
+    // let strIndex: any = index;
+    // if (this.checkedKeys.findIndex(strIndex) > 0) {
+    //   this.selectedProjects.push(project);
+    // }
+    // else {
+    //   let itemIndex = this.selectedProjects.findIndex(project);
+    //   if (itemIndex > -1) {
+    //     this.selectedProjects.splice(itemIndex);
+    //   }
+    //}
+
+    this.dataLoader.setProjectSelection(this.selectedProjects);
     this.dataLoader.publish("PROJECT_SELECTION_CHANGED");
   }
+
+  setProjectSelectionList() {
+
+  }
+
+  onNotify(msg: string) {
+    if (msg == "DATA_LOADED") {
+      this.loadProjectData();
+    }
+  }
+
+  public onNodeClick(item: any): void {
+    this.selectedItem = item;
+
+    // this.dataLoader.setProjectSelection(this.selectedKeys);
+    // this.dataLoader.publish("PROJECT_SELECTION_CHANGED");
+  }
+
+  public isSelected(item: any): boolean {
+    return this.selectedItem === item;
+  }
+
+  isJobItem(item: any): boolean {
+    try {
+      return item.jobNumber !== undefined;
+    } catch (error) {
+      return false;
+    }
+  }
 }
+

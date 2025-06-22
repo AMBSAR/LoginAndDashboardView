@@ -1,3 +1,7 @@
+:root {
+  --menu-item-highlight-color: rgb(198, 247, 226);
+}
+
 .sidebar {
     display: flex;
     position: sticky;
@@ -28,6 +32,8 @@
 
 .nav-content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .mainDashboardSelected::before {
@@ -58,25 +64,27 @@ li {
 a {
     height: 20px;
     width: 20px;
-    padding: .20rem .25rem;
+    padding: 10px 10px;
     color: white;
     display: flex;
+    justify-content: center;
+    justify-items: center;
     align-items: center;
     text-decoration: none;
     white-space: nowrap;
     align-self: center;
 }
 
-a:hover {
+a:hover, li:hover {
     border-radius: 50px;
     //background-color: blue;
-    background-color: rgb(198, 247, 226);
-    border-color: 0px 0px 5px 2px rgb(198, 247, 226);
+    background-color: var(--menu-item-highlight-color);
+    border-color: 0px 0px 5px 2px var(--menu-item-highlight-color);
     color: #e2e8f0;
 }
 
 a:active {
-    background-color: rgb(198, 247, 226);
+    background-color: var(--menu-item-highlight-color);
     color: #4299e1;
 }
 
@@ -86,8 +94,8 @@ a:active {
 
 
 kendo-svg-icon {
-    height: 15px;
-    width: 15px;
+    height: 18px;
+    width: 18px;
     font-size: 20px;
     color: black;
 }
@@ -97,10 +105,13 @@ kendo-svg-icon {
 }
 
 .home {
-    display: flex;
-    height: 35px;
-    padding-bottom: 20px;
-    padding-top: 10px;
+    position:relative;
+    height: 65px;
+    align-content: center;
+    justify-items: center;
+    border-bottom: 1px solid lightgray;
+    // padding-bottom: 20px;
+    // padding-top: 10px;
     //border-bottom: gray;
     //border: 0px 0px 0px 1px;
     //box-shadow: 0px 0px 1px 0px gray;
@@ -113,4 +124,116 @@ kendo-svg-icon {
     margin-bottom: 10px;
 }
 
-.toolNavigation {}
+.toolNavigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+ul {
+    justify-content: center;
+    justify-items: center;
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+}
+
+li {
+    justify-content: center;
+    justify-items: center;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+
+    &:hover {
+        border-color: var(--menu-item-highlight-color);
+    }
+}
+// .material-icons-outlined {
+//    font-size: small;
+//    ::picker-icon {
+//     color: blue;
+//    }
+// }
+
+.iconView {
+    font-size: 22px;
+    color: black;
+}
+
+#drawer {
+    row-gap: 20px;
+    height: 30px;
+    width: 30px;
+}
+
+// .material-icons-outlined {
+//   //font-family: 'Material Icons Outlined';
+//   font-weight: normal;
+//   font-style: normal;
+//   font-size: 24px;
+//   line-height: 1;
+//   letter-spacing: normal;
+//   text-transform: none;
+//   display: inline-block;
+//   white-space: nowrap;
+//   word-wrap: normal;
+//   direction: ltr;
+//   -webkit-font-smoothing: antialiased;
+// }
+
+// .material-symbols-outlined {
+//   font-variation-settings:
+//   'FILL' 0,
+//   'wght' 400,
+//   'GRAD' 0,
+//   'opsz' 24
+// }
+.menuItems {
+    background-color: pink;
+}
+.menuItems:hover {
+
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border-color: var(--menu-item-highlight-color);
+    border-radius: 20px;
+}
+
+
+.selected-item {
+    // background-color: #007bff;
+    // color: white;
+    // font-weight: bold;
+    padding: 5px;
+    border-color: var(--menu-item-highlight-color);
+    border-radius: 50px;
+}
+
+.k-drawer-item.k-selected {
+    background-color: transparent;
+}
+
+.k-drawer .k-selected {
+    background-color: #007bff;
+    /* Change to your preferred color */
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.drawer-item {
+    padding: 10px 10px; 
+    margin-bottom: 8px; /* Adjust the gap between items */
+    border-radius: 50px;
+    transition: background-color 0.3s;
+    background-color: aqua;
+}
+
+.k-drawer-item .k-selected {
+     background-color: rgb(111, 11, 1);
+    /* Change to your preferred color */
+    color: white;
+}

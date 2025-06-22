@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { KENDO_TABSTRIP, SelectEvent } from '@progress/kendo-angular-layout';
 import {
@@ -15,9 +15,12 @@ import { PageTBDComponent } from '../../page-tbd/page-tbd.component';
   templateUrl: './operations-dashboard.component.html',
   styleUrl: './operations-dashboard.component.scss'
 })
+
 export class OperationsDashboardComponent {
   LastUploadedDate:string = '04 Feb 2025';
   YTD_Value: number = 72;
+
+
 
   onTabSelect(e: SelectEvent){
   

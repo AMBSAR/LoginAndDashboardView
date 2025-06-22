@@ -1,4 +1,245 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    flex:1;
+    display:flex;
+    justify-content: stretch;
+    justify-items: stretch;
+    justify-self: stretch;
+    align-items: flex-start;
+    background-color: whitesmoke;
+}
+
+:root {
+    --primaryColor: rgb(25, 148, 115);
+    --notification_bg: rgb(252, 245, 193);
+    --notification_border: rgb(232, 117, 22);
+    --notification_linkColor: rgb(194, 26, 44);
+    --hyperLinkGreenColor: rgb(65, 189, 162);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 .container {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    justify-items: stretch;
+    justify-self: stretch;
+    position: relative;
+    row-gap: 5px;
+}
+
+button {
+    background-color: transparent;
+    border-width: 0px;
+    padding: 0px;
+    margin: 0px;
+    color: black;
+}
+
+.notification {
+    display: flex;
+    position: relative;
+    border-radius: 5px;
+    background-color: var(--notification_bg);
+    outline: 1px solid var(--notification_border);
+    height: 25px;
+    width: 100%;
+    justify-content: space-between;
+    justify-items: stretch;
+    justify-self:stretch;
+    align-items: center;
+    overflow: hidden;
+    column-gap: 5px;
+    color: black;
+
+    .hightlight {
+        font-weight: bold;
+    }
+
+    .highlightText {
+        color: var(--notification_linkColor);
+        margin-left: 10px;
+    }
+
+    &> button.right {
+        justify-self: flex-end;
+    }
+
+    kendo-svg-icon.notificationIcon {
+        color: rgb(232, 117, 22);
+    }
+}
+
+.filterActivities {
+    background-color: white;
+    width: 100%;
+    flex: 1;
+}
+
+.filterActivities, .activities {
+    border-radius: 5px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        padding-left: 10px;
+    }
+}
+
+.headingArea {
+    display: flex;
+    position: relative;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    justify-items: stretch;
+    justify-self:stretch;
+    align-items: center;
+    align-content: center;
+    column-gap: 5px;
+    color: black;
+    border-bottom: 1px solid gray;
+
+    .left {
+        column-gap: 10px;
+        flex:1px;
+    }
+    & .right {
+        flex: 1;
+        justify-self: flex-end;
+    }
+
+    kendo-label {
+        font-size: small;
+        color: darkgray;
+    }
+}
+
+.hyperlinkBtnGreen {
+    color: var(--hyperLinkGreenColor);
+}
+
+.filterSelectionArea {
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: stretch;
+    flex: 1;
+    justify-items:stretch;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    height: 80px;
+
+    &>filterItem {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        justify-items: left;
+        color: black;
+
+        &:first-child {
+            font-size: small;
+            font-weight: 300;
+        }
+    }
+
+    kendo-multiselect {
+        width: 125px;
+        height: 40px;
+    }
+}
+
+.DocumentTypeWithCountSelectionArea {
+    display: flex;
+    justify-content: flex-start;
+    justify-self: stretch;
+    flex: 1;
+    justify-items:stretch;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    column-gap: 10px;
+
+    &> button {
+        width: fit-content;
+        height: 30px;
+        padding: 3px 5px;
+        border-radius: 30px;
+        background-color: lightgray;
+        color: black;
+    }
+
+    .selectedDoc {
+        background-color: var(--primaryColor);
+        color: white;
+    }
+}
+
+.FwSummaryArea {
+    display: flex;
+    justify-content: space-evenly;
+    justify-self: stretch;
+    flex: 1;
+    justify-items:stretch;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    column-gap: 5px;
+    color: black;
+    
+    button {
+        height: 60px;
+    }
+
+    .navigateButton {
+        width: 35px;
+        background-color: rgb(235, 239, 238);
+    }
+
+    .fwHeading {
+        font-size: large;
+        font-weight: 300;
+    }
+
+    .fwCountData {
+        font-size: small;
+    }
+
+    .TypeToday {
+        background-color: rgb(254, 234, 238);
+        flex: 1;
+    }
+
+    .TypeCurrFW {
+        background-color: rgb(254, 251, 230);
+        flex: 1;
+    }
+
+    .TypeFW {
+        background-color: white;
+        flex: 1;
+    }
+}
+
+.cornerRoundedTextBox {
+    border-radius: 35px;
+    height: 35px;
+    width: 200px;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 20px;
+    color: lightgray;
+    margin: 7px;
+}
+
+kendo-svg-icon {
+    width: 20px;
+    height: 20px;
 }

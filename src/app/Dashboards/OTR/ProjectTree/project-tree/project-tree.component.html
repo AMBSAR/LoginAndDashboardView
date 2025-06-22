@@ -8,7 +8,8 @@
       ></kendo-textbox> -->
 
   <div>
-    <kendo-textbox placeholder="Search" class="cornerRoundedTextBox" type="text" [(ngModel)]="searchText" (ngModelChange)="searchTree()">
+    <kendo-textbox placeholder="Search" class="cornerRoundedTextBox" type="text" [(ngModel)]="searchText"
+      (ngModelChange)="searchTree()">
     </kendo-textbox>
     <kendo-svg-icon [icon]="searchIcon" class="searchIcon"></kendo-svg-icon>
   </div>
@@ -25,24 +26,41 @@
     @if(isDataLoading) {
     <span class="loader">Loading...</span>
     <div class="k-block loader">
-        <kendo-loader [type]="loaderType" [size]="loaderSize"></kendo-loader>
+      <kendo-loader [type]="loaderType" [size]="loaderSize"></kendo-loader>
     </div>
     }
-    <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
-      [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable
-      [expandedKeys]="expandedKeys" kendoTreeViewSelectable
-      [(selectedKeys)]="selectedKeys" (selectionChange)="onSelectionChange($event)">
-      <ng-template kendoTreeViewNodeTemplate let-dataItem>
-        <div class="nodeItem">
-          <kendo-checkbox [checkedState]="dataItem.IsSelected" id="nodeCheckbox"></kendo-checkbox>
-          <kendo-label class="k-display-block text" id="nodeProjectName">{{fetchText(dataItem)}}</kendo-label>
+    <!-- <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
+      [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable [expandedKeys]="expandedKeys"
+      kendoTreeViewSelectable [(selectedKeys)]="selectedKeys" (selectionChange)="onSelectionChange($event)"> -->
+      <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
+      [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable kendoTreeViewCheckable
+      [kendoTreeViewCheckable]="{ checkChildren: true }"
+      [(checkedKeys)]="checkedKeys" (checkedChange)="onSelectionChange($event)">
 
+      <ng-template kendoTreeViewExpandIcon let-node let-expanded="expanded">
+        <span class="custom-icon">
+          <ng-container *ngIf="expanded; else collapsedIcon">
+            <kendo-svg-icon [icon]="downIcon" class="favButton"></kendo-svg-icon>
+          </ng-container>
+
+          <ng-template #collapsedIcon><!-- Collapsed icon -->
+            <kendo-svg-icon [icon]="rightIcon" class="exp"></kendo-svg-icon>
+          </ng-template>
+        </span>
+      </ng-template>
+
+      <ng-template kendoTreeViewNodeTemplate let-dataItem>
+        <div class="nodeItem" [class.selected]="isSelected(dataItem)" (click)="onNodeClick(dataItem)">
+          <!-- <kendo-checkbox [checkedState]="dataItem.IsSelected" (valueChange)="onItemChecked(dataItem)" id="nodeCheckbox"></kendo-checkbox> -->
+          <kendo-label class="k-display-block text" [ngClass]="{ 'jobText': isJobItem(dataItem) }" id="nodeProjectName">{{fetchText(dataItem)}}</kendo-label>
           @if (dataItem['isFavourite'] == true) {
-          <button kendoButton [svgIcon]="favouriteIcon" class="favButton"></button>
+          <kendo-svg-icon [icon]="favouriteIcon" class="favButton"></kendo-svg-icon>
+          <!-- <button kendoButton [svgIcon]="favouriteIcon" class="favButton"></button> -->
           }
-          @else if (dataItem['isFavourite'] == false) {
-          <button kendoButton [svgIcon]="notFavouriteIcon" class="favButton"></button>
-          }
+          <!-- @else if (dataItem['isFavourite'] == false) { -->
+          <!-- <kendo-svg-icon [icon]="notFavouriteIcon" class="favButton unfavourite"></kendo-svg-icon> -->
+          <!-- <button kendoButton [svgIcon]="notFavouriteIcon" class="favButton"></button> -->
+          <!-- } -->
         </div>
       </ng-template>
     </kendo-treeview>
