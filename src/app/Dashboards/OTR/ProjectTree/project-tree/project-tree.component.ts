@@ -48,7 +48,7 @@ export class ProjectTreeComponent implements OnInit {
 
   public expandedKeys: any[] = ["0", "1"];
 
-  public checkedKeys: any[] = ["0"];
+  public checkedKeys: any[] = [];
 
   public isDataLoading = false;
   public selectedItem: any = null
@@ -192,7 +192,11 @@ export class ProjectTreeComponent implements OnInit {
       this.selectedProjects.push(project);
     }
     else {
-      
+      let projIndex = this.selectedProjects.indexOf(project);
+
+      if (projIndex > -1) {
+        this.selectedProjects.splice(projIndex);
+      }
     }
     
     // let strIndex: any = index;

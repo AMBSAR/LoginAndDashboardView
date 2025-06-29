@@ -16,37 +16,54 @@ export class JobData {
     jobNumber: string = '';
     isSelected: boolean = false;
     isFavourite: boolean = false;
+    parentTrain: any;
 
-    constructor(jobNumber: string) {
+    constructor(train: TrainData, jobNumber: string) {
+        this.parentTrain = train;
         this.jobNumber = jobNumber;
+    }
+
+    getParentTrain() {
+        return this.parentTrain;
+    }
+
+    getParentProject() {
+        return this.parentTrain?.getParentProject();
     }
 }
 
 export class TrainData {
+    parentProject: any;
     trainId: string = '';
     trainName: string = '';
     isSelected: boolean = false;
     jobNumbers: JobData[] = [];
 
-    constructor (train: Train) {
+    constructor (project: ProjectData, train: Train) {
+        this.parentProject = project;
         this.trainId = train.trainId;
         this.trainName = train.trainName;
         
         if (train.mmInfo != null && train.mmInfo.length > 0) {
             train.mmInfo.forEach((x: MmInfo ) => {
                 if (x.jobNumber != null && x.jobNumber != '') {
-                this.jobNumbers.push(new JobData(x.jobNumber));
+                this.jobNumbers.push(new JobData(this, x.jobNumber));
                 }
                 
                 if (x.childJobs != null && x.childJobs.length > 0) {
                     x.childJobs.forEach((x: string) => {
                         if (x != null && x != '') {
-                        this.jobNumbers.push(new JobData(x));
+                        this.jobNumbers.push(new JobData(this, x));
                         }
                     });
                 }
             } )
         }
+    }
+
+    getParentProject()
+    {
+        return this.parentProject;
     }
 }
 
@@ -65,7 +82,7 @@ export class ProjectData {
 
         if (project.trains != null && project.trains.length > 0) {
             project.trains.forEach((x: Train ) => {
-                this.trains.push(new TrainData(x));
+                this.trains.push(new TrainData(this, x));
             } )
         }
     }

@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+h2 {
+  padding: 0;
+  margin: 0;
+}
+
 .container {
   flex: 1;
   //width: 100%;
@@ -9,7 +14,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: pink;
 }
 
 .header {
@@ -25,7 +29,7 @@
 .verticalSeparator {
   width: 5px;
   height: 50%;
-  background-color: red;
+  background-color: gray;
 }
 
 kendo-circularprogressbar {
@@ -151,4 +155,11 @@ button .dovsbuy {
   justify-items: center;
   align-items: center;
   column-gap: 10px;
+}
+
+.k-tabstrip-top > .k-tabstrip-items-wrapper .k-item:active, .k-tabstrip-top > .k-tabstrip-items-wrapper .k-item.k-active {
+    background-color: #0078d7; // Change background
+    color: black; // Change text color
+    font-weight: bold; // Make text bold
+    border-bottom: 2px solid red !important; // Add bottom border
 }

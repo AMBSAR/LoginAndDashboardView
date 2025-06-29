@@ -15,7 +15,7 @@ import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 @Component({
   selector: 'app-login-view',
   standalone: true,
-  imports: [RouterOutlet, KENDO_INPUTS, KENDO_LABELS, KENDO_CHECKBOX, KENDO_BUTTONS, ReactiveFormsModule, KENDO_INDICATORS],
+  imports: [KENDO_INPUTS, KENDO_LABELS, KENDO_CHECKBOX, KENDO_BUTTONS, ReactiveFormsModule, KENDO_INDICATORS],
   templateUrl: './login-view.component.html',
   styleUrl: './login-view.component.scss'
 })

@@ -6,13 +6,15 @@ body,html {
 
 * {
     box-sizing: border-box;
-    outline: 5px solid red;
 }
 
 .mainDashboard {
     height: 100vh;
     display: flex;
     flex-grow: 1;
+    top: 0;
+    bottom: 0;
+    position:fixed;
 }
 
 .container {
@@ -24,16 +26,15 @@ body,html {
 
 .header {
     flex: 1;
-    height: fit-content;
+    height: 10vh;
 }
 
 .dashboardContainer {
     height: 100%;
     width: 100%;
-    display: flex;
+    display: block;
     justify-content:stretch;
     margin: 0 auto;
-    background-color: aqua;
 }
 
 .content {
@@ -42,12 +43,12 @@ body,html {
 }
 
 .navigationBar{
-    width:fit-content;
+    width: fit-content;
 }
 
 router-outlet {
-    justify-self: stretch;
+    justify-self: flex-start;
     width:100%;
     display: flex;
-    justify-content: stretch;
+    justify-content: flex-start;
 }

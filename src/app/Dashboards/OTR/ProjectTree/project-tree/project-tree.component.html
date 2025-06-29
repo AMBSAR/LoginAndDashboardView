@@ -32,27 +32,36 @@
     <!-- <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
       [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable [expandedKeys]="expandedKeys"
       kendoTreeViewSelectable [(selectedKeys)]="selectedKeys" (selectionChange)="onSelectionChange($event)"> -->
-      <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
+    <kendo-treeview [nodes]="ProjectDataList" [textField]="['projectName', 'trainName', 'jobNumber']"
       [hasChildren]="hasChildren" [children]="children" kendoTreeViewExpandable kendoTreeViewCheckable
-      [kendoTreeViewCheckable]="{ checkChildren: true }"
-      [(checkedKeys)]="checkedKeys" (checkedChange)="onSelectionChange($event)">
+      [kendoTreeViewCheckable]="{ checkChildren: true }" [(checkedKeys)]="checkedKeys"
+      (checkedChange)="onSelectionChange($event)">
 
-      <ng-template kendoTreeViewExpandIcon let-node let-expanded="expanded">
+      <!-- <ng-template kendoTreeViewExpandIcon let-node let-expanded="expanded">
         <span class="custom-icon">
           <ng-container *ngIf="expanded; else collapsedIcon">
             <kendo-svg-icon [icon]="downIcon" class="favButton"></kendo-svg-icon>
           </ng-container>
 
-          <ng-template #collapsedIcon><!-- Collapsed icon -->
+          <ng-template #collapsedIcon>
             <kendo-svg-icon [icon]="rightIcon" class="exp"></kendo-svg-icon>
           </ng-template>
         </span>
+      </ng-template> -->
+
+      <ng-template kendoTreeViewExpandIcon>
+        <kendo-svg-icon [icon]="downIcon" class="exp"></kendo-svg-icon>
       </ng-template>
+      <ng-template kendoTreeViewCollapseIcon>
+        <kendo-svg-icon [icon]="rightIcon" class="exp"></kendo-svg-icon>
+      </ng-template>
+
 
       <ng-template kendoTreeViewNodeTemplate let-dataItem>
         <div class="nodeItem" [class.selected]="isSelected(dataItem)" (click)="onNodeClick(dataItem)">
           <!-- <kendo-checkbox [checkedState]="dataItem.IsSelected" (valueChange)="onItemChecked(dataItem)" id="nodeCheckbox"></kendo-checkbox> -->
-          <kendo-label class="k-display-block text" [ngClass]="{ 'jobText': isJobItem(dataItem) }" id="nodeProjectName">{{fetchText(dataItem)}}</kendo-label>
+          <kendo-label class="k-display-block text" [ngClass]="{ 'jobText': isJobItem(dataItem) }"
+            id="nodeProjectName">{{fetchText(dataItem)}}</kendo-label>
           @if (dataItem['isFavourite'] == true) {
           <kendo-svg-icon [icon]="favouriteIcon" class="favButton"></kendo-svg-icon>
           <!-- <button kendoButton [svgIcon]="favouriteIcon" class="favButton"></button> -->

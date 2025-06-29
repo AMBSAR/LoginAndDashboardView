@@ -1,10 +1,12 @@
-<div class="container">
-    @if(SelectedProject != null) {
-    <div>
-        <div>
-            <div class="projectNameTitle">
-                <h3>{{SelectedProject.projectName}}</h3>
-            </div>
+<div class="fullcontainer">
+    @if(SelectedProjects != null) {
+    <div class="outerContainer">
+        @if (!showTabularDataInFullScreen) {
+        <div class="container">
+            <kendo-label class="projectNameTitle">{{projectNameText}}</kendo-label>
+            <!-- <div class="projectNameTitle">
+                {{projectNameText}}
+            </div> -->
             @if(ShowNotification) {
             <div class="notification">
                 <span>
@@ -22,76 +24,111 @@
                     <div class="right">
                         <button kendoButton class="hyperlinkBtnGreen">Clear Filter</button>
                         <button kendoButton [svgIcon]="moreHorizontalIcon"></button>
-                        <button kendoButton [svgIcon]="downArrow"></button>
+                        <button kendoButton [svgIcon]="downArrow" (click)="toggleFilterActivities()"></button>
                     </div>
                 </div>
-                <div class="filterSelectionArea">
-                    <div class="filterItem">
-                        <kendo-label text="View As" />
-                        <kendo-multiselect [data]="viewTypes" [(ngModel)]="selectedViewType"
-                            (ngModelChange)="onViewTypeSelectionChanged()"></kendo-multiselect>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Functions" />
-                        <kendo-multiselect [data]="Funcitons" [(ngModel)]="selectedFunctions"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Document Type" />
-                        <kendo-multiselect [data]="DocumentTypes" [(ngModel)]="selectedDocumentTypes"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Activity Status" />
-                        <kendo-multiselect [data]="StatusList" [(ngModel)]="selectedStatusList"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Activity Type" />
-                        <kendo-multiselect [data]="ActivityTypeList" [(ngModel)]="selectedActivityTypes"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Finish By" />
-                        <kendo-dropdownlist [data]="FinishByList" [(ngModel)]="selectedFinishBy" defaultItem="Select"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
-                    </div>
-                    <div class="filterItem">
-                        <kendo-label text="Date Type" />
-                        <kendo-dropdownlist [data]="DateTypeList" [(ngModel)]="selectedDateType" defaultItem="Select"
-                            (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist>
-                    </div>
-                </div>
-                <div class="DocumentTypeWithCountSelectionArea">
-                    @for(item of DocumentTypeSelectionList; track $index) {
-                    <button kendoButton (click)="onDocumentTypeClicked(item)" *ngClass="{ 'selectedDoc': item.isSelected }" >
-                        {{item.Label + " (" + item.Count +")"}}
-                    </button>
-                    }
-                </div>
-                <div class="FwSummaryArea">
-                    <button kendoButton [svgIcon]="leftArrowButton" class="navigateButton" (click)="onPrevFW()"
-                        [disabled]="canEnableFWPrev()"></button>
-                    @for(fw of FiscalWeekData; track $index) {
-                    <button kendoButton (click)="onFiscalWeek($index)"
-                        *ngClass="fw.fiscalWeek === 'Today' ? 'TypeToday' : fw.isCurrentFW ? 'TypeCurrFW' : 'TypeFW'">
-                        <div>
-                            @if (fw.fiscalWeek === 'Today') {
-                            <kendo-label class=" fwHeading">{{fw.fiscalWeek}} </kendo-label>
-                            }
-                            @else {
-                            <kendo-label class=" fwHeading">{{fw.fiscalWeek + ", " + fw.year}} </kendo-label>
-                            }
-                            <kendo-label class="fwCountData">{{fw.notCompleted + " of " + fw.total}} </kendo-label>
+                @if (showFilterActivitiesView) {
+                <div class="filterActivities">
+                    <div class="filterSelectionArea">
+                        <div class="filterItem">
+                            <kendo-label text="View As" />
+                            <kendo-multiselect [data]="viewTypes" [(ngModel)]="selectedViewType"
+                                (ngModelChange)="onViewTypeSelectionChanged()"></kendo-multiselect>
                         </div>
-                    </button>
-                    }
-                    <button kendoButton [svgIcon]="rightArrowButton" class="navigateButton" (click)="onNextFW()"
-                        [disabled]="canEnableFWNext()"></button>
+                        <div class="filterItem">
+                            <kendo-label text="Functions" />
+                            <kendo-multiselect [data]="Funcitons" [(ngModel)]="selectedFunctions" [checkboxes]="true"
+                                #multiselect [checkboxes]="{ checkOnClick: false }" [autoClose]="false"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div class="filterItem">
+                            <kendo-label text="Document Type" />
+                            <kendo-multiselect [data]="DocumentTypes" [(ngModel)]="selectedDocumentTypes"
+                                [checkboxes]="true" #multiselect [checkboxes]="{ checkOnClick: false }"
+                                [autoClose]="false" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div class="filterItem">
+                            <kendo-label text="Activity Status" />
+                            <kendo-multiselect [data]="StatusList" [(ngModel)]="selectedStatusList" [checkboxes]="true"
+                                #multiselect [checkboxes]="{ checkOnClick: false }" [autoClose]="false"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div class="filterItem">
+                            <kendo-label text="Activity Type" />
+                            <kendo-multiselect [data]="ActivityTypeList" [(ngModel)]="selectedActivityTypes"
+                                [checkboxes]="true" #multiselect [checkboxes]="{ checkOnClick: false }"
+                                [autoClose]="false" (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div class="filterItem">
+                            <kendo-label text="Finish By" />
+                            <kendo-multiselect [data]="FinishByList" [(ngModel)]="selectedFinishBy"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                        <div class="filterItem">
+                            <kendo-label text="Date Type" />
+                            <!-- <kendo-dropdownlist [data]="DateTypeList" [(ngModel)]="selectedDateType" defaultItem="Select"
+                            (ngModelChange)="onFilterSelectionChange()"></kendo-dropdownlist> -->
+                            <kendo-multiselect [data]="DateTypeList" [(ngModel)]="selectedDateType"
+                                (ngModelChange)="onFilterSelectionChange()"></kendo-multiselect>
+                        </div>
+                    </div>
+                    <div class="DocumentTypeWithCountSelectionArea">
+                        @for(item of DocumentTypeSelectionList; track $index) {
+                        @if (item.isSelected) {
+                        <button kendoButton (click)="onDocumentTypeClicked(item)" class="selectedDoc">
+                            {{item.Label + " (" + item.Count +")"}}
+                        </button>
+                        <div class="verticalSeparator"></div>
+                        }
+                        @else {
+                        <button kendoButton (click)="onDocumentTypeClicked(item)">
+                            {{item.Label + " (" + item.Count +")"}}
+                        </button>
+                        }
+                        }
+                    </div>
+                    <div class="FwSummaryArea">
+                        <button kendoButton [svgIcon]="leftArrowButton" class="navigateButton" (click)="onPrevFW()"
+                            [disabled]="canEnableFWPrev()"></button>
+                        @for(fw of FiscalWeekData; track $index) {
+                        @if (fw.fiscalWeek === 'Today'){
+                        <button kendoButton (click)="onFiscalWeek($index)" class="TypeFW TypeToday">
+                            <div class="fwButton">
+                                <kendo-label class=" fwHeading">{{fw.fiscalWeek}} </kendo-label>
+                                <kendo-label class="fwCountData">{{fw.notCompleted + " out of " + fw.total + " are not
+                                    completed"}} </kendo-label>
+                            </div>
+                        </button>
+                        }
+                        @else if(fw.isCurrentWeek == "true") {
+                        <button kendoButton (click)="onFiscalWeek($index)" class="TypeFW TypeCurrFW">
+                            <div class="fwButton">
+                                <kendo-label class=" fwHeading">{{fw.fiscalWeek + ", " + fw.year + " (This Week)"}}
+                                </kendo-label>
+                                <kendo-label class="fwCountData">{{fw.notCompleted + " out of " + fw.total + " are not
+                                    completed"}} </kendo-label>
+                            </div>
+                        </button>
+                        }
+                        @else {
+                        <button kendoButton (click)="onFiscalWeek($index)" class="TypeFW TypeOthers">
+                            <div class="fwButton">
+                                <kendo-label class=" fwHeading">{{fw.fiscalWeek + ", " + fw.year}} </kendo-label>
+                                <kendo-label class="fwCountData">{{fw.notCompleted + " out of " + fw.total + " are not
+                                    completed"}} </kendo-label>
+                            </div>
+                        </button>
+                        }
+                        }
+                        <button kendoButton [svgIcon]="rightArrowButton" class="navigateButton" (click)="onNextFW()"
+                            [disabled]="canEnableFWNext()"></button>
+                    </div>
                 </div>
+                }
             </div>
         </div>
-        <div class="activities">
+        }
+        <div class="container activities">
             <div class="headingArea">
                 <div class="left">
                     <h3>Activities</h3>
@@ -104,19 +141,17 @@
                         </kendo-textbox>
                         <kendo-svg-icon [icon]="searchIcon" class="searchIcon"></kendo-svg-icon>
                     </div>
-                    <button kendoButton [svgIcon]="fullScreenIcon"></button>
+
+                    <button kendoButton [svgIcon]="showTabularDataInFullScreen ? fullScreenExitIcon : fullScreenIcon"
+                        (click)="toggleTabularDataFullScreenMode()"></button>
                     <button kendoButton [svgIcon]="settingsIcon"></button>
                 </div>
             </div>
             <div>
-                <kendo-grid [data]="TabularData">
-                    <kendo-grid-column field="PROJECT_ID" title="PROJECT_ID"> </kendo-grid-column>
-                    <kendo-grid-column field="PROJECT_NAME" title="PROJECT_NAME"> </kendo-grid-column>
-                    <kendo-grid-column field="ACT_ID" title="ACT_ID"> </kendo-grid-column>
-                    <kendo-grid-column field="ACTIVITY_NAME" title="ACTIVITY_NAME"> </kendo-grid-column>
-                    <kendo-grid-column field="PROMISE_DATE" title="PROMISE_DATE"> </kendo-grid-column>
-                    <kendo-grid-column field="ACKNOWLEDGE" title="ACKNOWLEDGE"> </kendo-grid-column>
-                    <kendo-grid-column field="ACKNOWLEDGE_DATE" title="ACKNOWLEDGE_DATE"> </kendo-grid-column>
+                <span>Tabular View 2</span>
+                <kendo-grid [data]="gridData">
+                    <kendo-grid-column field="id" [width]="80" title="ID"></kendo-grid-column>
+                    <kendo-grid-column field="name" title="First Name" [width]="130"></kendo-grid-column>
                 </kendo-grid>
             </div>
         </div>

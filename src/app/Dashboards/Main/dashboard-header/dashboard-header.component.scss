@@ -192,24 +192,26 @@ button {
 }
 
 .options {
+  width:100%;
   display: flex;
   justify-content: left;
-  justify-self: left;
+  justify-self: stretch;
   justify-items: stretch;
   align-items: center;
   align-self: center;
   align-content: center;
   cursor: pointer;
+
+  & > kendo-svg-icon {
+    justify-content: flex-end;
+    justify-items: flex-end;
+  }
 }
 
 .options > span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  &:last-child {
-    justify-self: flex-end;
-  }
 }
 
 #ProfileView profilePic {

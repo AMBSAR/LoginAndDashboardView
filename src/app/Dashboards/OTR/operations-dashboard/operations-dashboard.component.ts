@@ -11,7 +11,7 @@ import { PageTBDComponent } from '../../page-tbd/page-tbd.component';
 @Component({
   selector: 'app-operations-dashboard',
   standalone: true,
-  imports: [RouterOutlet, KENDO_TABSTRIP, KENDO_PROGRESSBARS, IspoDashboardComponent, PageTBDComponent],
+  imports: [KENDO_TABSTRIP, KENDO_PROGRESSBARS, IspoDashboardComponent],
   templateUrl: './operations-dashboard.component.html',
   styleUrl: './operations-dashboard.component.scss'
 })

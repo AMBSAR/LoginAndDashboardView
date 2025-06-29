@@ -83,84 +83,93 @@ export interface ISPOTabularDataList {
 }
 
 export interface ISPOActivityData {
-    id:                            number;
-    PROJECT_ID:                    string;
-    PRIMARY_RESOURCE_NAME:         string;
-    ACT_ID:                        string;
-    ACTIVITY_NAME:                 string;
-    STEP_ID:                       string;
-    STEP_NAME:                     string;
-    EARLY_DATE:                    string;
-    IMPACTED_NCR:                  string;
-    LATE_FINISH:                   string;
-    PROMISE_DATE:                  string | null;
-    COMMENT:                       null;
-    ACKNOWLEDGE:                   null;
-    ACKNOWLEDGE_DATE:              null;
-    PROJECT_NAME:                  string;
-    ROLE:                          string;
-    PRIMARY_RESOURCE_SSO:          string;
-    LONG_DUMMY:                    null;
-    ACT_TYPE:                      string;
-    REAL_CODE:                     string;
-    EARLY_STATUS:                  string;
-    ACTUAL_FINISH:                 string;
-    TYPE:                          string;
-    EARLY_DUE_WEEK:                string;
-    AGING:                         null;
-    UNIFIER_PROJECT_STATUS:        null;
-    "P6-PROJ_CONTR_DELIVERY_DATE": null;
-    PROJECT_PHASE:                 string;
-    CONTRACT_NUMBER:               string;
-    PL:                            null;
-    SUB_PL:                        null;
-    RAC_DT:                        string;
-    PLANNING_DATE:                 null;
-    TRAIN_TYPE:                    null;
-    SYSTEM_DATE:                   null;
-    ORGANIZATION_NAME:             null;
-    JOB_TYPE:                      null;
-    DIVISION:                      null;
-    EXCLUDE:                       null;
-    FUNCTION:                      null;
-    DOC_TYPE:                      null;
-    LATE_STATUS:                   string;
-    MAIN_FUNCTION:                 null;
-    ITEM_AGGREGATION:              null;
-    RCA:                           null | string;
-    PO_NUMBER:                     null;
-    VDR_EARLY_DATE:                null;
-    PO_SPECIFICATION_ID:           null;
-    "SIGN-OFF_STATUS":             null;
-    VENDOR:                        null;
-    APPROVE_TYPE:                  null;
-    DOCUMENT_DUE_DATE:             null;
-    UNIFIER_DOCUMENT_STATUS:       null;
-    UNIFIER_REVISION_STATUS:       null;
-    DOC_EMISSION_CODE:             null;
-    PM:                            string;
-    PROJECT_TYPE:                  null;
-    DELAY_CUSTOMER:                null;
-    CUSTOMER_DOC:                  null;
-    RETURN_DATE_ACTUAL:            null;
-    LAST_SUBMISSION:               null;
-    FIRST_SUBMISSION:              null;
-    DWG_ISSUE_NUMBER_FINAL:        null;
-    PP:                            string;
-    ADDITIONAL_CUSTOMER_DOC:       null;
-    PE:                            string;
-    DOC_RETURN_CODE:               null;
-    RETURN_DATE_PLANNED:           null;
-    PROJECT_STATUS_Primavera:      null;
-    "TEAM LEADER":                 null;
-    GENERAL:                       null;
-    Sub_Division:                  null;
-    FLAG:                          null;
-    WA_IN_JOT_REQUIRED:            null;
-    SORT_DATE:                     Date;
-    dummy:                         null;
-    configurator:                  boolean;
-    latefinishwarning:             boolean;
+    id: number
+  PROJECT_ID: string
+  PRIMARY_RESOURCE_NAME: string
+  ACT_ID: string
+  ACTIVITY_NAME: string
+  STEP_ID: string
+  STEP_NAME: string
+  EARLY_DATE: string
+  IMPACTED_NCM: any
+  IMPACTED_NCR: string
+  LATE_FINISH: string
+  PROMISE_DATE: any
+  COMMENT: any
+  ACKNOWLEDGE: any
+  ACKNOWLEDGE_DATE: any
+  PROJECT_NAME: string
+  ROLE: string
+  PRIMARY_RESOURCE_SSO: string
+  LONG_DUMMY: any
+  ACT_TYPE: string
+  REAL_CODE: string
+  EARLY_STATUS: string
+  ACTUAL_FINISH: string
+  TYPE: string
+  EARLY_DUE_WEEK: string
+  AGING: any
+  UNIFIER_PROJECT_STATUS: any
+  "P6-PROJ_CONTR_DELIVERY_DATE": any
+  PROJECT_PHASE: string
+  CONTRACT_NUMBER: string
+  PL: any
+  SUB_PL: any
+  RAC_DT: string
+  PLANNING_DATE: any
+  TRAIN_TYPE: any
+  SYSTEM_DATE: any
+  ORGANIZATION_NAME: any
+  JOB_TYPE: any
+  DIVISION: any
+  EXCLUDE: any
+  FUNCTION: any
+  DOC_TYPE: any
+  LATE_STATUS: string
+  MAIN_FUNCTION: any
+  ITEM_AGGREGATION: any
+  RCA?: string
+  PO_NUMBER: any
+  VDR_EARLY_DATE: any
+  PO_SPECIFICATION_ID: any
+  "SIGN-OFF_STATUS": any
+  VENDOR: any
+  APPROVE_TYPE: any
+  DOCUMENT_DUE_DATE: any
+  UNIFIER_DOCUMENT_STATUS: any
+  UNIFIER_REVISION_STATUS: any
+  DOC_EMISSION_CODE: any
+  PM: string
+  PROJECT_TYPE: any
+  DELAY_CUSTOMER: any
+  CUSTOMER_DOC: any
+  RETURN_DATE_ACTUAL: any
+  LAST_SUBMISSION: any
+  FIRST_SUBMISSION: any
+  DWG_ISSUE_NUMBER_FINAL: any
+  PP: string
+  ADDITIONAL_CUSTOMER_DOC: any
+  PE: string
+  DOC_RETURN_CODE: any
+  RETURN_DATE_PLANNED: any
+  PROJECT_STATUS_Primavera: any
+  "TEAM LEADER": any
+  GENERAL: any
+  Sub_Division: any
+  FLAG: any
+  WA_IN_JOT_REQUIRED: any
+  SORT_DATE: string
+  dummy: any
+  configurator: boolean
+  latefinishwarning: boolean
+}
+
+export interface FWSummaryData {
+  summary: FWSummary;
+}
+
+export interface FWSummary {
+  weeklydatacount: FiscalWeekData[];
 }
 
 //FiscalWeekData
@@ -174,8 +183,12 @@ export interface FiscalWeekData {
     notCompleted:  string;
 }
 
-// SummaryData
 export interface SummaryData {
+  summary: SummaryDataItem;
+}
+
+// SummaryData
+export interface SummaryDataItem {
     PreviousotdPercentage:   string;
     previousfw:              number;
     previouscompletedontime: string;
